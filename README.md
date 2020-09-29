@@ -1,2 +1,2 @@
-# CS509-TermProject
-CS509 - Design of Software Systems Term Project
+# CS509-CalculatorProject
+CS509 - Design of Software Systems Calculator Project
