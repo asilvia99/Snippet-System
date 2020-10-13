@@ -1,2 +1,2 @@
-# CS509-CalculatorProject
-CS509 - Design of Software Systems Calculator Project
+# CS509-SnippetSystem
+CS509 - Design of Software Systems Snippet System Project
