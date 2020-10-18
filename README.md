@@ -8,7 +8,7 @@ work on the project, follow the below steps:
 
 ### Initial Setup
 1. First things first, clone the Git Repository to your computer.
-2. Next, ensure that both Webstorm (or Visual Studio Code) and Eclipse are installed
+2. Next, ensure that both Webstorm and Eclipse are installed
 3. With Eclipse installed, install the AWS Toolchain.
 4. Additionally, install Node on to your computer. Tested with version 12.19.0: [Download link](https://nodejs.org/en/download/)
 
