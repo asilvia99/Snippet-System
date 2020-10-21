@@ -1,0 +1,25 @@
+main {
+    display: flex;
+}
+
+.info-container {
+    background: lightgray;
+    height: 100px;
+}
+
+.control-container {
+    background: lightsalmon;
+    height: 150px;
+}
+
+.editor-container {
+    width: 50vw;
+    background: lightblue;
+    height: calc(100vh - 450px);
+}
+
+.comments-container {
+    width: 50vw;
+    background: lightcyan;
+    height: calc(100vh - 500px);
+}

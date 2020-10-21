@@ -6,6 +6,7 @@ import Home from "./components/Home/Home";
 import About from "./components/About/About";
 import Shop from "./components/Shop/Shop";
 import ItemDetail from "./components/ItemDetail/ItemDetail";
+import Snippet from "./components/Snippet/Snippet";
 
 import {
     BrowserRouter as Router,
@@ -25,6 +26,8 @@ function App() {
                         <Route path="/about" exact component={About}/>
                         <Route path="/shop" exact component={Shop}/>
                         <Route path="/shop/:id" component={ItemDetail}/>
+                        <Route path="/snippet/:id" component={Snippet}/>
+                        <Route path="/snippet" exact component={Snippet}/>
                     </Switch>
                 </div>
                 <Footer/>
