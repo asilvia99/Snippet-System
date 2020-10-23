@@ -6,7 +6,7 @@ import java.time.Instant;
 
 public class Snippet {
 
-    private final int id;
+    private final String id;
     private String text;
     private String info;
     private final String password;
@@ -14,7 +14,7 @@ public class Snippet {
     private final Instant created;
     private Instant modified;
 
-    private Snippet(int id, String text, String info, String password, String codingLang, Instant created, Instant modified) {
+    private Snippet(String id, String text, String info, String password, String codingLang, Instant created, Instant modified) {
         this.id = id;
         this.text = text;
         this.info = info;
@@ -26,7 +26,7 @@ public class Snippet {
 
     public static Snippet makeSnippet(ResultSet resultSet) throws Exception {
         try {
-            int id = resultSet.getInt(1);
+            String id = resultSet.getString(1);
             String text = resultSet.getString(2);
             String info = resultSet.getString(3);
             String password = resultSet.getString(4);
@@ -39,7 +39,11 @@ public class Snippet {
         }
     }
 
-    public int getID() {
+    public static Snippet makeSnippet(String id, String text, String info, String password, String codingLang) throws Exception {
+        return new Snippet(id, text, info, password, codingLang, null, null);
+    }
+
+    public String getID() {
         return id;
     }
 
