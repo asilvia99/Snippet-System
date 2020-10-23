@@ -133,8 +133,7 @@ public class SnippetDAO {
             preparedStatement.setInt(1, snippet.getID());
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()) {
-                Snippet s = Snippet.makeSnippet(resultSet);
+            if(resultSet.next()) {
                 resultSet.close();
                 return false;
             }
