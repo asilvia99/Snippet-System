@@ -12,6 +12,16 @@ public class CreateSnippetHandler implements RequestHandler<CreateSnippetRequest
 
     LambdaLogger logger;
 
+    /**
+     * returns true if can add to database
+     * @param id
+     * @param text
+     * @param info
+     * @param password
+     * @param codingLang
+     * @return
+     * @throws Exception
+     */
     boolean createSnippet(String id, String text, String info, String password, String codingLang) throws Exception {
         if (logger != null) {
             logger.log("In createSnippet");
@@ -31,7 +41,7 @@ public class CreateSnippetHandler implements RequestHandler<CreateSnippetRequest
      * Handles the request
      *
      * @param input
-     * @param context
+     * @param context - from AWS
      * @return
      */
     @Override

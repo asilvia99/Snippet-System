@@ -4,11 +4,19 @@ public class CreateSnippetRequest {
     private String ID;
     private String text;
     private String info;
-    private String password;
-    private String codingLang;
+    private String password;  //optional
+    private String codingLang;  //optional
 
-    private CreateSnippetRequest() {
-
+    public CreateSnippetRequest(){
+	
+    }
+    
+    public CreateSnippetRequest(String ID, String text, String info, String password, String codingLang){
+		 this.ID = ID;
+		 this.text = text;
+		 this.info = info;
+		 this.password = password;
+		 this.codingLang = codingLang;
     }
 
 
