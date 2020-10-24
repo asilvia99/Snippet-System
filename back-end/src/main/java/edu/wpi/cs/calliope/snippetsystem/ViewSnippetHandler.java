@@ -6,25 +6,22 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 import edu.wpi.cs.calliope.snippetsystem.db.SnippetDAO;
 import edu.wpi.cs.calliope.snippetsystem.http.CreateSnippetRequest;
 import edu.wpi.cs.calliope.snippetsystem.http.CreateSnippetResponse;
+import edu.wpi.cs.calliope.snippetsystem.http.ViewSnippetRequest;
+import edu.wpi.cs.calliope.snippetsystem.http.ViewSnippetResponse;
 import edu.wpi.cs.calliope.snippetsystem.model.Snippet;
 
-public class ViewSnippetHandler implements RequestHandler<CreateSnippetRequest, CreateSnippetResponse> {
+public class ViewSnippetHandler implements RequestHandler<ViewSnippetRequest, ViewSnippetResponse> {
 
     LambdaLogger logger;
 
-    boolean createSnippet(String id, String text, String info, String password, String codingLang) throws Exception {
+    Snippet viewSnippet(String id) throws Exception {
         if (logger != null) {
-            logger.log("In createSnippet");
+            logger.log("In viewSnippet");
         }
         SnippetDAO dao = new SnippetDAO();
 
         Snippet exists = dao.getSnippet(id);
-        if(exists == null) {
-            Snippet snippet = Snippet.makeSnippet(id, text, info, password, codingLang);
-            return dao.addSnippet(snippet);
-        } else {
-            return false;
-        }
+        return exists;
     }
 
     /**
@@ -35,19 +32,21 @@ public class ViewSnippetHandler implements RequestHandler<CreateSnippetRequest, 
      * @return
      */
     @Override
-    public CreateSnippetResponse handleRequest(CreateSnippetRequest input, Context context) {
+    public ViewSnippetResponse handleRequest(ViewSnippetRequest input, Context context) {
         logger = context.getLogger();
         logger.log(input.toString());
 
-        CreateSnippetResponse response;
+        ViewSnippetResponse response;
         try {
-            if(createSnippet(input.getID(), input.getText(), input.getInfo(), input.getPassword(), input.getCodingLang())) {
-                response = new CreateSnippetResponse(input.getID());
+            Snippet snippet = viewSnippet(input.getId());
+
+            if(snippet != null) {
+                response = ViewSnippetResponse.makeViewSnippetResponse(snippet);
             } else {
-                response = new CreateSnippetResponse(input.getID(), 442);
+                response = ViewSnippetResponse.makeViewSnippetResponse(input.getId(), 442);
             }
         } catch (Exception e) {
-            response = new CreateSnippetResponse("Unable to create snippet: " + input.getID() + "(" + e.getMessage() + ")", 400);
+            response = ViewSnippetResponse.makeViewSnippetResponse("Unable to create snippet: " + input.getId() + "(" + e.getMessage() + ")", 400);
         }
 
         return response;

@@ -82,4 +82,16 @@ public class Snippet {
     public void setModified(Instant modified) {
         this.modified = modified;
     }
+
+    public String toJSON() {
+        return "{" +
+                "id: " + getID() + "," +
+                "text: " + getText() + "," +
+                "info: " + getInfo() + "," +
+                "password: " + getPassword() + "," +
+                "codingLanguage: " + getCodingLang() + "," +
+                "createDate: " + getCreated().toString() + "," +
+                "lastModifiedDate: " + getModified().toString() + "," +
+                "}";
+    }
 }
