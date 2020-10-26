@@ -8,8 +8,19 @@ import Controls from "../Controls/Controls";
 function Snippet(props) {
 
     const snippetObj = {
-        language: 'python',
-        text: 'let text = "hello"\nlet text = "hello2"',
+        language: 'javascript',
+        text:
+`function onLoad(editor) {
+    console.log("i've loaded");
+}
+
+function onLoad(editor) {
+    console.log("i've loaded");
+}
+
+function onLoad(editor) {
+    console.log("i've loaded");
+}`,
         canEdit: true,
     }
 
