@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import edu.wpi.cs.calliope.snippetsystem.model.Snippet;
 
 /**
@@ -11,6 +12,7 @@ import edu.wpi.cs.calliope.snippetsystem.model.Snippet;
  */
 public class SnippetDAO {
 
+    private final LambdaLogger logger;
     java.sql.Connection conn;
 
     final String tblName = "snippet";   // Exact capitalization
@@ -18,12 +20,15 @@ public class SnippetDAO {
     /**
      * Snippet Database Access Object
      */
-    public SnippetDAO() {
+    public SnippetDAO(LambdaLogger logger) {
+        this.logger = logger;
         try  {
-            conn = DatabaseUtil.connect();
+            conn = DatabaseUtil.connect(logger);
         } catch (Exception e) {
+        	logger.log(e.getLocalizedMessage());
             conn = null;
         }
+        logger.log("Conn: " + (conn != null));
     }
 
     /**
@@ -40,7 +45,7 @@ public class SnippetDAO {
             preparedStatement.setString(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()) {
+            while (resultSet.next() && !resultSet.wasNull()) {
                 snippet = Snippet.makeSnippet(resultSet);
             }
 
@@ -50,7 +55,7 @@ public class SnippetDAO {
             return snippet;
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new Exception("Failed in getting snippet: " + e.getMessage());
+            return null;
         }
     }
 
@@ -129,7 +134,7 @@ public class SnippetDAO {
      */
     public boolean addSnippet(Snippet snippet) throws Exception {
         try {
-            PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM " + tblName + " Where ID=?;");
+            PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM " + tblName + " WHERE ID=?;");
             preparedStatement.setString(1, snippet.getID());
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -138,11 +143,12 @@ public class SnippetDAO {
                 return false;
             }
 
-            preparedStatement = conn.prepareStatement("INSERT INTO " + tblName + "(text, info, password, coding_lang) value (?,?,?,?)");
-            preparedStatement.setString(1, snippet.getText());
-            preparedStatement.setString(2, snippet.getInfo());
-            preparedStatement.setString(3, snippet.getPassword());
-            preparedStatement.setString(4, snippet.getCodingLang());
+            preparedStatement = conn.prepareStatement("INSERT INTO " + tblName + "(ID, Text, Info, Password, Coding_Lang) value (?,?,?,?,?)");
+            preparedStatement.setString(1, snippet.getID());
+            preparedStatement.setString(2, snippet.getText());
+            preparedStatement.setString(3, snippet.getInfo());
+            preparedStatement.setString(4, snippet.getPassword());
+            preparedStatement.setString(5, snippet.getCodingLang());
             preparedStatement.execute();
             return true;
         } catch (SQLException e) {

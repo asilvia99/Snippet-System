@@ -18,7 +18,7 @@ public class UpdateSnippetTextHandler implements RequestHandler<UpdateSnippetTex
         if (logger != null) {
             logger.log("In updateSnippetText");
         }
-        SnippetDAO dao = new SnippetDAO();
+        SnippetDAO dao = new SnippetDAO(logger);
 
         Snippet exists = dao.getSnippet(id);
         if(exists != null) {

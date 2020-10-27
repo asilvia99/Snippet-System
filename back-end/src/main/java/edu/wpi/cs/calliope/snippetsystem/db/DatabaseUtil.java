@@ -1,5 +1,7 @@
 package edu.wpi.cs.calliope.snippetsystem.db;
 
+import com.amazonaws.services.lambda.runtime.LambdaLogger;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -15,25 +17,20 @@ public class DatabaseUtil {
     public final static String multiQueries = "?allowMultiQueries=true";
 
     // Make sysEnv variable lambdaTesting so we know we are locally testing
-    public final static String lambdaTesting = "lambdaTesting";
     public final static String DB_NAME = "snippet_system";
-    public final static String testName = "test";
 
     // pooled across all usages.
     static Connection conn;
 
     /**
      * Singleton access to DB connection to share resources effectively across multiple accesses.
+     * @param logger
      */
-    protected static Connection connect() throws Exception {
+    protected static Connection connect(LambdaLogger logger) throws Exception {
         if (conn != null) { return conn; }
 
         // this is resistant to any SQL-injection attack.
         String schemaName = DB_NAME;
-        String test = System.getenv("lambdaTesting");
-        if (test != null) {
-            schemaName = testName;
-        }
 
         String db_user = System.getenv("DB_USER");
         if (db_user == null) {
@@ -48,6 +45,10 @@ public class DatabaseUtil {
             System.err.println("Environment variable db_host is not set!");
         }
 
+        logger.log("USER: " + db_user);
+        logger.log("PASS: " + db_passwd);
+        logger.log("HOST: " + db_host);
+
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -56,8 +57,8 @@ public class DatabaseUtil {
                     db_user,
                     db_passwd);
             return conn;
-        } catch (SQLException e) {
-            System.err.println("DB-ERROR:" + schemaName + "," + db_user + "," + db_passwd + "," + db_host);
+        } catch (Exception e) {
+            logger.log("DB-ERROR:" + schemaName + "," + db_user + "," + db_passwd + "," + db_host);
             throw new Exception("Failed in database connection");
         }
     }

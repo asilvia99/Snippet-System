@@ -6,15 +6,15 @@ import java.time.Instant;
 
 public class Snippet {
 
-    private final String id;
-    private String text;
-    private String info;
-    private final String password;
-    private final String codingLang;
-    private final Instant created;
-    private Instant modified;
+    public final String id;
+    public String text;
+    public String info;
+    public final String password;
+    public final String codingLang;
+    public final Instant created;
+    public Instant modified;
 
-    private Snippet(String id, String text, String info, String password, String codingLang, Instant created, Instant modified) {
+    public Snippet(String id, String text, String info, String password, String codingLang, Instant created, Instant modified) {
         this.id = id;
         this.text = text;
         this.info = info;
@@ -39,7 +39,7 @@ public class Snippet {
         }
     }
 
-    public static Snippet makeSnippet(String id, String text, String info, String password, String codingLang) throws Exception {
+    public static Snippet makeSnippet(String id, String text, String info, String password, String codingLang) {
         return new Snippet(id, text, info, password, codingLang, null, null);
     }
 
@@ -90,8 +90,8 @@ public class Snippet {
                 "info: " + getInfo() + "," +
                 "password: " + getPassword() + "," +
                 "codingLanguage: " + getCodingLang() + "," +
-                "createDate: " + getCreated().toString() + "," +
-                "lastModifiedDate: " + getModified().toString() + "," +
+                "createDate: " + (getCreated() == null ? "" : getCreated().toString()) + "," +
+                "lastModifiedDate: " + (getModified() == null ? "" : getModified().toString()) +
                 "}";
     }
 }

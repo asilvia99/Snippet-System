@@ -11,8 +11,8 @@ public class CreateSnippetRequest {
 	
     }
     
-    public CreateSnippetRequest(String ID, String text, String info, String password, String codingLang){
-		 this.ID = ID;
+    public CreateSnippetRequest(String id,  String info, String text, String codingLang, String password){
+		 this.ID = id;
 		 this.text = text;
 		 this.info = info;
 		 this.password = password;
@@ -57,5 +57,15 @@ public class CreateSnippetRequest {
 
     public void setCodingLang(String codingLang) {
         this.codingLang = codingLang;
+    }
+
+    @Override
+    public String toString() {
+
+        return "ID: " + getID() +
+                "\nText: " + getText() +
+                "\nInfo: " + getInfo() +
+                "\nPassword: " + getPassword() +
+                "\nCoding Lang: " + getCodingLang();
     }
 }

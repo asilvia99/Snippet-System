@@ -26,13 +26,17 @@ public class CreateSnippetHandler implements RequestHandler<CreateSnippetRequest
         if (logger != null) {
             logger.log("In createSnippet");
         }
-        SnippetDAO dao = new SnippetDAO();
+        SnippetDAO dao = new SnippetDAO(logger);
 
         Snippet exists = dao.getSnippet(id);
         if(exists == null) {
+            logger.log("In first case");
             Snippet snippet = Snippet.makeSnippet(id, text, info, password, codingLang);
+            logger.log(snippet.getID());
+            logger.log("Snippet: " + snippet.toJSON());
             return dao.addSnippet(snippet);
         } else {
+        	logger.log("Snippet: " + exists.toJSON());
             return false;
         }
     }
@@ -57,7 +61,7 @@ public class CreateSnippetHandler implements RequestHandler<CreateSnippetRequest
                 response = new CreateSnippetResponse(input.getID(), 442);
             }
         } catch (Exception e) {
-            response = new CreateSnippetResponse("Unable to create snippet: " + input.getID() + "(" + e.getMessage() + ")", 400);
+            response = new CreateSnippetResponse("Unable to create snippet: " + input.getID() + "(" + e.getLocalizedMessage() + ")", 400);
         }
 
         return response;
