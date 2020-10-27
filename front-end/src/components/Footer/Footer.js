@@ -17,7 +17,7 @@ const Footer = () => {
                 <div className="text">
                     <strong>This website was created as a final project for CS 509 - Design of Software Systems</strong>
                     <p>
-                        By Khalid Alnuaim, Kevin Bimonte, Raysa Rivera-Bergolla, and Allison Silvia
+                        By Khalid Alnuaim, Kevin Bimonte, Raysa Rivera-Bergollo, and Allison Silvia
                     </p>
                     <figure className="image is-64x64">
                         <a
