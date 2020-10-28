@@ -12,10 +12,10 @@ function handleSelect(e) {
 const options = [ 'C','C++','Java','Python'];
 const defaultOption = options[0];
 
-function Info() {
+function Info(props) {
     return (
         <div className="info">
-            <div className = "snippetId"> Snippet Id goes here </div>
+            <div className = "snippetId"> Snippet Id: {props.id} </div>
             < div className = "section">
                 <div className="infoEditor">
                    <InfoForm/>

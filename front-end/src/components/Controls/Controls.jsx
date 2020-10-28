@@ -1,5 +1,8 @@
 import React, {useEffect, useState} from "react";
 import './Controls.css'
+import {useHistory} from "react-router-dom";
+import ViewSnippetForm from "./ViewSnippetForm";
+import InfoForm from "../Info/InfoForm";
 
 function newSnippet() {
     alert('Create a new snippet');
@@ -10,16 +13,11 @@ function deleteSnippet() {
 }
 
 function Controls() {
-
     return (
         <div className="controls">
             <div className= "snippetControls">
                 <button className="btnNewSnippet" onClick={newSnippet}>New Snippet</button>
-                <form className = "viewSnippet">
-                    <label htmlFor="snippetId">Enter Snippet Id to view:</label>
-                    <input type="text" id="snippetId" name="snippetId"></input>
-                    <input type="submit" value="View Snippet"></input>
-                </form>
+                <ViewSnippetForm/>
                 <button className="btnDeleteSnippet" onClick={newSnippet}>Delete Snippet</button>
             </div>
         </div>
