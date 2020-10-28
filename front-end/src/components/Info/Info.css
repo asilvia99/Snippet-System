@@ -10,23 +10,3 @@
     min-height: 100%;
     padding-top:1vh;
 }
-
-.infoEditor{
-    font-family: Arial;
-}
-
-.infoForm{
-    width:70%;
-    background-color:lightgreen;
-
-}
-
-.btnSaveInfo{
-    background-color:lightgreen;
-    height: 2%;
-}
-
-.languageSelection{
-    background-color:lightblue;
-    font-family: Arial;
-}
