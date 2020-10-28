@@ -6,15 +6,15 @@ import java.time.Instant;
 
 public class Snippet {
 
-    public final String id;
-    public String text;
-    public String info;
-    public final String password;
-    public final String codingLang;
-    public final Instant created;
-    public Instant modified;
+    private final String id;
+    private String text;
+    private String info;
+    private final String password;
+    private final String codingLang;
+    private final Instant created;
+    private Instant modified;
 
-    public Snippet(String id, String text, String info, String password, String codingLang, Instant created, Instant modified) {
+    private Snippet(String id, String text, String info, String password, String codingLang, Instant created, Instant modified) {
         this.id = id;
         this.text = text;
         this.info = info;

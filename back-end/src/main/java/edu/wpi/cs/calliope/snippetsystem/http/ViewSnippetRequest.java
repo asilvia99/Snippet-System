@@ -1,13 +1,26 @@
 package edu.wpi.cs.calliope.snippetsystem.http;
 
 public class ViewSnippetRequest {
-    private final String id;
+    private String ID;
 
-    public ViewSnippetRequest(String id) {
-        this.id = id;
+    public ViewSnippetRequest() {
+
     }
 
-    public String getId() {
-        return id;
+    public ViewSnippetRequest(String ID) {
+        this.ID = ID;
+    }
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    @Override
+    public String toString() {
+        return ID;
     }
 }

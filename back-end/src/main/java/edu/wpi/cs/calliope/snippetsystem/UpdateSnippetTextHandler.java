@@ -4,8 +4,6 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import edu.wpi.cs.calliope.snippetsystem.db.SnippetDAO;
-import edu.wpi.cs.calliope.snippetsystem.http.CreateSnippetRequest;
-import edu.wpi.cs.calliope.snippetsystem.http.CreateSnippetResponse;
 import edu.wpi.cs.calliope.snippetsystem.http.UpdateSnippetTextRequest;
 import edu.wpi.cs.calliope.snippetsystem.http.UpdateSnippetTextResponse;
 import edu.wpi.cs.calliope.snippetsystem.model.Snippet;

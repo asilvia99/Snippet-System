@@ -26,6 +26,18 @@ public class ViewSnippetResponse {
         return new ViewSnippetResponse(message, code);
     }
 
+    public String getResponse() {
+        if(this.snippet != null) {
+            return snippet.toJSON();
+        } else {
+            return message;
+        }
+    }
+
+    public int getHttpCode() {
+        return httpCode;
+    }
+
     @Override
     public String toString() {
         if(this.snippet != null) {
