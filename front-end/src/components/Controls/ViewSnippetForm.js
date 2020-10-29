@@ -1,6 +1,8 @@
 import React from 'react';
+import {useHistory} from "react-router-dom";
 
 class ViewSnippetForm extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {value: ''};
@@ -13,8 +15,11 @@ class ViewSnippetForm extends React.Component {
         this.setState({value: event.target.value});
     }
 
+
     handleSubmit(event) {
-        alert('Snippet Id was submitted: ' + this.state.value);
+        if (this.state.value != '') {
+            this.props.history.push("/snippet/"+ this.state.value);
+        }
         event.preventDefault();
     }
 

@@ -9,7 +9,7 @@ function handleSelect(e) {
     alert(e.value);
 }
 
-const options = [ 'C','C++','Java','Python'];
+const options = [ 'None','C','C++','Java','Python'];
 const defaultOption = options[0];
 
 function Info(props) {

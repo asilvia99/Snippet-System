@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 
 function Home() {
     const history = useHistory();
-    const id = '123';
+    const id = 'home123';
     function newSnippet() {
         history.push("/snippet/"+ id);
     }
