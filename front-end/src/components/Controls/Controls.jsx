@@ -4,21 +4,24 @@ import {useHistory} from "react-router-dom";
 import ViewSnippetForm from "./ViewSnippetForm";
 import InfoForm from "../Info/InfoForm";
 
-function newSnippet() {
-    alert('Create a new snippet');
-}
+function Controls({isCreator}) {
 
-function deleteSnippet() {
-    alert('Delete this snippet');
-}
+    function newSnippet() {
+        alert('Create a new snippet');
+    }
 
-function Controls() {
+    function deleteSnippet() {
+        alert('Delete this snippet');
+    }
+
     return (
         <div className="controls">
             <div className= "snippetControls">
                 <button className="btnNewSnippet" onClick={newSnippet}>New Snippet</button>
                 <ViewSnippetForm/>
+                { isCreator &&
                 <button className="btnDeleteSnippet" onClick={newSnippet}>Delete Snippet</button>
+                }
             </div>
         </div>
     );
