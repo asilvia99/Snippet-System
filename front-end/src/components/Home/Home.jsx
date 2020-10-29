@@ -6,8 +6,12 @@ import { useHistory } from "react-router-dom";
 function Home() {
     const history = useHistory();
     const id = '123';
+    const location = {
+        pathname: "/snippet/"+ id,
+        state: { isCreator: true }
+    }
     function newSnippet() {
-        history.push("/snippet/"+ id);
+        history.push(location);
     }
     return (
         <div>

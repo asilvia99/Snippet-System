@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import './Snippet.css'
 import Editor from "../Editor/Editor";
 import Comments from "../Comments/Comments";
@@ -26,12 +26,21 @@ function onLoad(editor) {
         canEdit: true,
     }
 
+    const [isCreator, setIsCreator] = useState(false)
+
     useEffect(() => {
         console.log(props)
+
+        // if url has no id then redirect to home
         if (props.match.params.id == undefined) {
-                history.push("/");
-                console.log("need to redirect")
+            history.push("/");
         }
+
+        // check if the user is creator
+        if (props.location.state && props.location.state.isCreator) {
+            setIsCreator(true)
+        }
+
     }, [props]);
 
     return (
@@ -40,7 +49,7 @@ function onLoad(editor) {
             <main>
                 <section>
                     <div className="info-container">
-                        <Info id = {props.match.params.id} />
+                        <Info id = {props.match.params.id} isCreator={isCreator}/>
                     </div>
                     <div className="editor-container">
                         <Editor language={snippetObj.language} text={snippetObj.text} canEdit={snippetObj.canEdit}/>
@@ -48,7 +57,7 @@ function onLoad(editor) {
                 </section>
                 <section>
                     <div className="control-container">
-                        <Controls/>
+                        <Controls isCreator={isCreator}/>
                     </div>
                     <div className="comments-container">
                         <Comments />
