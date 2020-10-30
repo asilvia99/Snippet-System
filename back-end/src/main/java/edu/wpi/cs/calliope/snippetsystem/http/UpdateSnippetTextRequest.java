@@ -12,7 +12,6 @@ public class UpdateSnippetTextRequest {
         this.text = text;
     }
 
-
     public String getID() {
         return ID;
     }
@@ -29,5 +28,9 @@ public class UpdateSnippetTextRequest {
         this.text = text;
     }
 
+    @Override
+    public String toString() {
+        return "ID: " + ID + "\nText: " + text;
+    }
 }
 

@@ -85,13 +85,13 @@ public class Snippet {
 
     public String toJSON() {
         return "{" +
-                "id: " + getID() + "," +
-                "text: " + getText() + "," +
-                "info: " + getInfo() + "," +
-                "password: " + getPassword() + "," +
-                "codingLanguage: " + getCodingLang() + "," +
-                "createDate: " + (getCreated() == null ? "" : getCreated().toString()) + "," +
-                "lastModifiedDate: " + (getModified() == null ? "" : getModified().toString()) +
-                "}";
+                "\"id\": \"" + getID() + "\", " +
+                "\"text\": \"" + getText() + "\", " +
+                "\"info\": \"" + getInfo() + "\", " +
+                "\"password\": \"" + getPassword() + "\", " +
+                "\"codingLanguage\": \"" + getCodingLang() + "\", " +
+                "\"createDate\": \"" + (getCreated() == null ? "" : getCreated().toString()) + "\", " +
+                "\"lastModifiedDate\": \"" + (getModified() == null ? "" : getModified().toString()) +
+                "\" }";
     }
 }

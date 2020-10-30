@@ -76,8 +76,11 @@ public class SnippetDAO {
             int numAffected = preparedStatement.executeUpdate();
             preparedStatement.close();
 
+            logger.log(String.valueOf(numAffected));
+
             return numAffected == 1;
         } catch (SQLException e) {
+            logger.log("Failed to update snippet text: " + e.getMessage());
             throw new Exception("Failed to update snippet text: " + e.getMessage());
         }
     }
