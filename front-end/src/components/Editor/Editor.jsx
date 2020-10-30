@@ -15,14 +15,16 @@ import "ace-builds/src-noconflict/theme-monokai";
  */
 function Editor({language, text, canEdit}) {
     const markers = [
-        {   startRow: 0,
+        {
+            startRow: 0,
             startCol: 0,
             endRow: 4,
             endCol: 14,
             className: 'marker',
             type: 'background'
         },
-        {   startRow: 8,
+        {
+            startRow: 8,
             startCol: 0,
             endRow: 8,
             endCol: 19,
@@ -72,14 +74,19 @@ function Editor({language, text, canEdit}) {
                 onChange={c => {
                     console.log(isEditable)
                     if (isEditable) {
-                       setCode(c)
+                        setCode(c)
                     }
                 }}
                 onSelectionChange={selection => {
-                    setSelect({anchorRow: selection.anchor.row, anchorColumn: selection.anchor.column, cursorRow: selection.cursor.row, cursorColumn: selection.cursor.column, })
+                    setSelect({
+                        anchorRow: selection.anchor.row,
+                        anchorColumn: selection.anchor.column,
+                        cursorRow: selection.cursor.row,
+                        cursorColumn: selection.cursor.column,
+                    })
                 }}
                 name="code-editor-area"
-                editorProps={{ $blockScrolling: true }}
+                editorProps={{$blockScrolling: true}}
                 value={code}
                 markers={markers}
                 annotations={annotations}

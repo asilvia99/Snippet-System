@@ -4,8 +4,8 @@ import {Link} from 'react-router-dom';
 function Shop() {
 
     useEffect(() => {
-            fetchItems();
-        }, []);
+        fetchItems();
+    }, []);
 
     const [items, setItems] = useState([]);
 
@@ -25,7 +25,7 @@ function Shop() {
             <p>Below is a list of upcoming items:</p>
             {items.map(item => (
                 <h3 key={item.itemId}>
-                        <Link to={`/shop/${item.itemId}`}> {item.item.name} </Link>
+                    <Link to={`/shop/${item.itemId}`}> {item.item.name} </Link>
                 </h3>
             ))}
         </div>

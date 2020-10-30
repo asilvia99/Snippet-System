@@ -4,7 +4,7 @@ import Editor from "../Editor/Editor";
 import Comments from "../Comments/Comments";
 import Info from "../Info/Info";
 import Controls from "../Controls/Controls";
-import { useHistory } from "react-router-dom";
+import {useHistory} from "react-router-dom";
 
 function Snippet(props) {
     const history = useHistory();
@@ -12,7 +12,7 @@ function Snippet(props) {
     const snippetObj = {
         language: 'javascript',
         text:
-`function onLoad(editor) {
+            `function onLoad(editor) {
     console.log("i've loaded");
 }
 
@@ -49,7 +49,7 @@ function onLoad(editor) {
             <main>
                 <section>
                     <div className="info-container">
-                        <Info id = {props.match.params.id} isCreator={isCreator}/>
+                        <Info id={props.match.params.id} isCreator={isCreator}/>
                     </div>
                     <div className="editor-container">
                         <Editor language={snippetObj.language} text={snippetObj.text} canEdit={snippetObj.canEdit}/>
@@ -60,7 +60,7 @@ function onLoad(editor) {
                         <Controls isCreator={isCreator}/>
                     </div>
                     <div className="comments-container">
-                        <Comments />
+                        <Comments/>
                     </div>
                 </section>
             </main>

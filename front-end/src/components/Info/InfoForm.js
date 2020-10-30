@@ -21,7 +21,8 @@ class InfoForm extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <input disabled={!this.props.isCreator} type="text" value={this.state.value} onChange={this.handleChange} placeHolder = "Enter snippet info"/>
+                <input disabled={!this.props.isCreator} type="text" value={this.state.value}
+                       onChange={this.handleChange} placeHolder="Enter snippet info"/>
                 {this.props.isCreator &&
                 <input type="submit" value="Save"/>
                 }
