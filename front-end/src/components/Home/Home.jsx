@@ -4,7 +4,7 @@ import {useHistory} from "react-router-dom";
 
 function Home() {
     const history = useHistory();
-    const id = 'home123';
+    const id = 'ddb7ed69-f520-4f5a-8fe9-08271484b3c7';
     const location = {
         pathname: "/snippet/" + id,
         state: {isCreator: true}

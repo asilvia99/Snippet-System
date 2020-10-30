@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import './Editor.css'
 import AceEditor from "react-ace";
+import axios from 'axios'
 
 import "ace-builds/src-noconflict/mode-java";
 import "ace-builds/src-noconflict/mode-javascript";
@@ -13,7 +14,7 @@ import "ace-builds/src-noconflict/theme-monokai";
 /**
  * for ref: https://github.com/securingsincity/react-ace/blob/master/docs/FAQ.md
  */
-function Editor({language, text, canEdit}) {
+function Editor({language, text, canEdit, snippetId}) {
     const markers = [
         {
             startRow: 0,
@@ -51,6 +52,7 @@ function Editor({language, text, canEdit}) {
     const [code, setCode] = useState('')
     const [isEditable, setIsEditable] = useState(true)
     const [select, setSelect] = useState({})
+    const [sid, setSid] = useState("")
 
     useEffect(() => {
         setLang(language)
@@ -64,6 +66,26 @@ function Editor({language, text, canEdit}) {
         setIsEditable(canEdit)
     }, [canEdit])
 
+    useEffect(() => {
+        setSid(snippetId)
+    }, [snippetId])
+
+    const updateText = async (text) => {
+        try {
+            const headers = {
+                'Content-Type': 'application/json'
+            };
+            console.log(`https://3rkdcoc9pe.execute-api.us-east-2.amazonaws.com/beta/snippet/${sid}/update/text`)
+            const r = await axios.post(`https://3rkdcoc9pe.execute-api.us-east-2.amazonaws.com/beta/snippet/${sid}/update/text`,
+                {text: text},
+                {headers})
+            console.log(r)
+        } catch (e){
+            console.log('=========================')
+            console.log(e)
+        }
+    }
+
     return (
         <div className="editor">
             <AceEditor
@@ -75,6 +97,7 @@ function Editor({language, text, canEdit}) {
                     console.log(isEditable)
                     if (isEditable) {
                         setCode(c)
+                        updateText(c)
                     }
                 }}
                 onSelectionChange={selection => {

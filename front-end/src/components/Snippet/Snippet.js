@@ -8,6 +8,7 @@ import {useHistory} from "react-router-dom";
 
 function Snippet(props) {
     const history = useHistory();
+    const [snippet, setSnippet] = useState({});
 
     const snippetObj = {
         language: 'javascript',
@@ -36,12 +37,27 @@ function onLoad(editor) {
             history.push("/");
         }
 
+        fetchItems(props.match.params.id)
+
+
         // check if the user is creator
         if (props.location.state && props.location.state.isCreator) {
             setIsCreator(true)
+        } else {
+            setIsCreator(false)
         }
 
     }, [props]);
+
+    const fetchItems = async (sid) => {
+        const data = await fetch('https://3rkdcoc9pe.execute-api.us-east-2.amazonaws.com/beta/snippet/'+sid)
+        const s = await data.json();
+        const j = JSON.parse(s.response)
+        console.log(s.response);
+        console.log(j)
+        console.log(j.text)
+        setSnippet(j)
+    }
 
     return (
         <div>
@@ -52,7 +68,7 @@ function onLoad(editor) {
                         <Info id={props.match.params.id} isCreator={isCreator}/>
                     </div>
                     <div className="editor-container">
-                        <Editor language={snippetObj.language} text={snippetObj.text} canEdit={snippetObj.canEdit}/>
+                        <Editor snippetId={snippet.id} language={snippet.codingLanguage} text={snippet.text} canEdit={snippetObj.canEdit}/>
                     </div>
                 </section>
                 <section>
