@@ -1,5 +1,6 @@
 package edu.wpi.cs.calliope.snippetsystem.http;
 
+import com.google.gson.Gson;
 import edu.wpi.cs.calliope.snippetsystem.model.Snippet;
 
 public class ViewSnippetResponse {
@@ -8,9 +9,13 @@ public class ViewSnippetResponse {
 
     private final int httpCode;
 
+    private Gson gson;
+
     private ViewSnippetResponse(Snippet snippet, int httpCode) {
         this.snippet = snippet;
         this.httpCode = httpCode;
+
+        gson = new Gson();
     }
 
     private ViewSnippetResponse(String message, int httpCode) {
@@ -28,7 +33,7 @@ public class ViewSnippetResponse {
 
     public String getResponse() {
         if(this.snippet != null) {
-            return snippet.toJSON();
+            return gson.toJson(snippet);
         } else {
             return message;
         }
@@ -41,7 +46,7 @@ public class ViewSnippetResponse {
     @Override
     public String toString() {
         if(this.snippet != null) {
-            return "Response("+ snippet.toJSON() + ")";
+            return "Response("+ gson.toJson(snippet) + ")";
         } else {
             return "Response(" + message + ")";
         }

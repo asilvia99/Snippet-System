@@ -86,6 +86,58 @@ public class SnippetDAO {
     }
 
     /**
+     * Updates the password of a snippet
+     *
+     * @param id the id of the snippet
+     * @param password the password to update
+     * @return true if the number of snippets updated equals 1
+     * @throws Exception thrown if SQL Exception is triggered
+     */
+    public boolean updatePassword(String id, String password) throws Exception {
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement("UPDATE " + tblName + " SET Password=? WHERE ID=?");
+            preparedStatement.setString(1, password);
+            preparedStatement.setString(2, id);
+
+            int numAffected = preparedStatement.executeUpdate();
+            preparedStatement.close();
+
+            logger.log(String.valueOf(numAffected));
+
+            return numAffected == 1;
+        } catch (SQLException e) {
+            logger.log("Failed to update snippet password: " + e.getMessage());
+            throw new Exception("Failed to update snippet password: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Updates the codingLang of a snippet
+     *
+     * @param id the id of the snippet
+     * @param codingLang the coding lang to update
+     * @return true if the number of snippets updated equals 1
+     * @throws Exception thrown if SQL Exception is triggered
+     */
+    public boolean updateCodingLang(String id, String codingLang) throws Exception {
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement("UPDATE " + tblName + " SET Coding_Lang=? WHERE ID=?");
+            preparedStatement.setString(1, codingLang);
+            preparedStatement.setString(2, id);
+
+            int numAffected = preparedStatement.executeUpdate();
+            preparedStatement.close();
+
+            logger.log(String.valueOf(numAffected));
+
+            return numAffected == 1;
+        } catch (SQLException e) {
+            logger.log("Failed to update snippet coding language: " + e.getMessage());
+            throw new Exception("Failed to update snippet coding language: " + e.getMessage());
+        }
+    }
+
+    /**
      * Updates the info of a snippet
      *
      * @param id the id of the snippet

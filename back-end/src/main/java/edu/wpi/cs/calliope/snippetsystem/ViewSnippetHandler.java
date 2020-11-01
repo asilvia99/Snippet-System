@@ -18,8 +18,7 @@ public class ViewSnippetHandler implements RequestHandler<ViewSnippetRequest, Vi
         }
         SnippetDAO dao = new SnippetDAO(logger);
 
-        Snippet exists = dao.getSnippet(id);
-        return exists;
+        return dao.getSnippet(id);
     }
 
     /**

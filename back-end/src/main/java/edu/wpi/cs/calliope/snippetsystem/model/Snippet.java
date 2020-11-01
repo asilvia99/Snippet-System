@@ -1,5 +1,7 @@
 package edu.wpi.cs.calliope.snippetsystem.model;
 
+import com.google.gson.Gson;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.Instant;
@@ -83,15 +85,15 @@ public class Snippet {
         this.modified = modified;
     }
 
-    public String toJSON() {
-        return "{" +
-                "\"id\": \"" + getID() + "\", " +
-                "\"text\": \"" + getText() + "\", " +
-                "\"info\": \"" + getInfo() + "\", " +
-                "\"password\": \"" + getPassword() + "\", " +
-                "\"codingLanguage\": \"" + getCodingLang() + "\", " +
-                "\"createDate\": \"" + (getCreated() == null ? "" : getCreated().toString()) + "\", " +
-                "\"lastModifiedDate\": \"" + (getModified() == null ? "" : getModified().toString()) +
-                "\" }";
-    }
+//    public String toJSON() {
+//        return "{" +
+//                "\"id\": \"" + getID() + "\", " +
+//                "\"text\": \"" + getText() + "\", " +
+//                "\"info\": \"" + getInfo() + "\", " +
+//                "\"password\": \"" + getPassword() + "\", " +
+//                "\"codingLanguage\": \"" + getCodingLang() + "\", " +
+//                "\"createDate\": \"" + (getCreated() == null ? "" : getCreated().toString()) + "\", " +
+//                "\"lastModifiedDate\": \"" + (getModified() == null ? "" : getModified().toString()) +
+//                "\" }";
+//    }
 }

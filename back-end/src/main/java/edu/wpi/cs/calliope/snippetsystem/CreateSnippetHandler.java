@@ -4,6 +4,7 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.fasterxml.uuid.Generators;
+import com.google.gson.Gson;
 import edu.wpi.cs.calliope.snippetsystem.db.SnippetDAO;
 import edu.wpi.cs.calliope.snippetsystem.http.CreateSnippetRequest;
 import edu.wpi.cs.calliope.snippetsystem.http.CreateSnippetResponse;
@@ -34,15 +35,17 @@ public class CreateSnippetHandler implements RequestHandler<CreateSnippetRequest
 
         logger.log(uuid.toString());
 
+        Gson gson = new Gson();
+
         Snippet exists = dao.getSnippet(uuid.toString());
         if(exists == null) {
             logger.log("In first case");
             Snippet snippet = Snippet.makeSnippet(uuid.toString(), text, info, password, codingLang);
             logger.log(snippet.getID());
-            logger.log("Snippet: " + snippet.toJSON());
+            logger.log("Snippet: " + gson.toJson(snippet));
             return dao.addSnippet(snippet) ? uuid.toString() : null;
         } else {
-        	logger.log("Snippet: " + exists.toJSON());
+        	logger.log("Snippet: " + gson.toJson(exists));
             return null;
         }
     }
