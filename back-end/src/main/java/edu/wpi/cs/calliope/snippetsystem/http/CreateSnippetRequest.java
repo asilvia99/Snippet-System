@@ -1,7 +1,6 @@
 package edu.wpi.cs.calliope.snippetsystem.http;
 
 public class CreateSnippetRequest {
-    private String ID;
     private String text;
     private String info;
     private String password;
@@ -11,20 +10,11 @@ public class CreateSnippetRequest {
 	
     }
     
-    public CreateSnippetRequest(String id,  String info, String text, String codingLang, String password){
-		 this.ID = id;
+    public CreateSnippetRequest(String info, String text, String codingLang, String password){
 		 this.text = text;
 		 this.info = info;
 		 this.password = password;
 		 this.codingLang = codingLang;
-    }
-
-    public String getID() {
-        return ID;
-    }
-
-    public void setID(String ID) {
-        this.ID = ID;
     }
 
     public String getText() {
@@ -62,8 +52,7 @@ public class CreateSnippetRequest {
     @Override
     public String toString() {
 
-        return "ID: " + getID() +
-                "\nText: " + getText() +
+        return  "Text: " + getText() +
                 "\nInfo: " + getInfo() +
                 "\nPassword: " + getPassword() +
                 "\nCoding Lang: " + getCodingLang();
