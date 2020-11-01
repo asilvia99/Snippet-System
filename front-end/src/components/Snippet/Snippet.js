@@ -12,18 +12,7 @@ function Snippet(props) {
 
     const snippetObj = {
         language: 'javascript',
-        text:
-            `function onLoad(editor) {
-    console.log("i've loaded");
-}
-
-function onLoad(editor) {
-    console.log("i've loaded");
-}
-
-function onLoad(editor) {
-    console.log("i've loaded");
-}`,
+        text:' ',
         canEdit: true,
     }
 
@@ -65,7 +54,7 @@ function onLoad(editor) {
             <main>
                 <section>
                     <div className="info-container">
-                        <Info id={props.match.params.id} isCreator={isCreator}/>
+                        <Info id={props.match.params.id } isCreator={isCreator} information = {snippet.info} language={snippet.codingLanguage}/>
                     </div>
                     <div className="editor-container">
                         <Editor snippetId={snippet.id} language={snippet.codingLanguage} text={snippet.text} canEdit={snippetObj.canEdit}/>
