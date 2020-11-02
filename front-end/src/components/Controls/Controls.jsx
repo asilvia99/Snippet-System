@@ -1,24 +1,35 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import './Controls.css'
 import {useHistory} from "react-router-dom";
 import ViewSnippetForm from "./ViewSnippetForm";
-import InfoForm from "../Info/InfoForm";
+import axios from "axios";
 
 function Controls({isCreator}) {
     const history = useHistory();
-    const id = 'controls123';
 
     const location = {
-        pathname: "/snippet/"+id,
+        pathname: "",
         state: {isCreator: true}
     }
 
-    function newSnippet() {
+    async function newSnippet() {
+        // call backend to create snippet
+        try {
+            const headers = { 'Content-Type': 'application/json' };
+            const r = await axios.post(`https://3rkdcoc9pe.execute-api.us-east-2.amazonaws.com/beta/snippet/`,
+                {info: '', text: ''},
+                {headers})
+            console.log(r.data.response)
+            location.pathname = "/snippet/" + r.data.response
+
+        } catch (e){
+            console.log(e)
+        }
         history.push(location);
     }
 
     function deleteSnippet() {
-        history.push("/snippet/");
+        history.push("/");
     }
     function enablePassword(){
         alert("Viewers will need this password to view: atklgbhgluf")

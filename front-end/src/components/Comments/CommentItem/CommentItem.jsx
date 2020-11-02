@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import './CommentItem.css'
 
 function CommentItem({comment, setMark}) {

@@ -3,9 +3,6 @@ import React from 'react';
 import './App.css';
 import Nav from "./components/Nav/Nav";
 import Home from "./components/Home/Home";
-import About from "./components/About/About";
-import Shop from "./components/Shop/Shop";
-import ItemDetail from "./components/ItemDetail/ItemDetail";
 import Snippet from "./components/Snippet/Snippet";
 
 import {
@@ -23,9 +20,6 @@ function App() {
                 <div className="content-wrap">
                     <Switch>
                         <Route path="/" exact component={Home}/>
-                        <Route path="/about" exact component={About}/>
-                        <Route path="/shop" exact component={Shop}/>
-                        <Route path="/shop/:id" component={ItemDetail}/>
                         <Route path="/snippet/:id" component={Snippet}/>
                         <Route path="/snippet" exact component={Snippet}/>
                     </Switch>

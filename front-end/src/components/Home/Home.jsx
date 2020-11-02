@@ -20,7 +20,6 @@ function Home() {
             location.pathname = "/snippet/" + r.data.response
 
         } catch (e){
-            console.log('=========================')
             console.log(e)
         }
         history.push(location);

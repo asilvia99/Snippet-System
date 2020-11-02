@@ -38,10 +38,8 @@ function Snippet(props) {
     }
 
     useEffect(() => {
-        console.log(props)
-
         // if url has no id then redirect to home
-        if (props.match.params.id == undefined) {
+        if (props.match.params.id === undefined) {
             history.push("/");
         }
 
@@ -55,17 +53,12 @@ function Snippet(props) {
             setIsCreator(false)
         }
 
-    }, [props]);
+    }, [props, history]);
 
     const fetchItems = async (sid) => {
         const data = await fetch('https://3rkdcoc9pe.execute-api.us-east-2.amazonaws.com/beta/snippet/'+sid)
         const s = await data.json();
-        console.log(s.response)
-        console.log(s.response.id)
         const j = JSON.parse(s.response)
-        console.log(s.response.text);
-        console.log(j)
-        console.log(j.text)
         setSnippet(j)
     }
 

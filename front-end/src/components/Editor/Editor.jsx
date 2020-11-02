@@ -3,6 +3,8 @@ import './Editor.css'
 import AceEditor from "react-ace";
 import axios from 'axios'
 
+import 'ace-builds/webpack-resolver'
+
 import "ace-builds/src-noconflict/mode-java";
 import "ace-builds/src-noconflict/mode-javascript";
 import "ace-builds/src-noconflict/mode-python";
@@ -15,39 +17,39 @@ import "ace-builds/src-noconflict/theme-monokai";
  * for ref: https://github.com/securingsincity/react-ace/blob/master/docs/FAQ.md
  */
 function Editor({language, text, canEdit, setCanComment, mark, setSelect, snippetId}) {
-    const markers = [
-        {
-            startRow: 0,
-            startCol: 0,
-            endRow: 4,
-            endCol: 14,
-            className: 'marker',
-            type: 'background'
-        },
-        {
-            startRow: 8,
-            startCol: 0,
-            endRow: 8,
-            endCol: 19,
-            className: 'marker',
-            type: 'background'
-        }
-    ];
+    // const markers = [
+    //     {
+    //         startRow: 0,
+    //         startCol: 0,
+    //         endRow: 4,
+    //         endCol: 14,
+    //         className: 'marker',
+    //         type: 'background'
+    //     },
+    //     {
+    //         startRow: 8,
+    //         startCol: 0,
+    //         endRow: 8,
+    //         endCol: 19,
+    //         className: 'marker',
+    //         type: 'background'
+    //     }
+    // ];
 
-    const annotations = [
-        {
-            row: 1, // must be 0 based
-            column: 4, // must be 0 based
-            text: "[comment 1] this is the comment", // text to show in tooltip
-            type: "info"
-        },
-        {
-            row: 1, // must be 0 based
-            column: 4, // must be 0 based
-            text: "[comment 2] this is a comment2", // text to show in tooltip
-            type: "info"
-        }
-    ];
+    // const annotations = [
+    //     {
+    //         row: 1, // must be 0 based
+    //         column: 4, // must be 0 based
+    //         text: "[comment 1] this is the comment", // text to show in tooltip
+    //         type: "info"
+    //     },
+    //     {
+    //         row: 1, // must be 0 based
+    //         column: 4, // must be 0 based
+    //         text: "[comment 2] this is a comment2", // text to show in tooltip
+    //         type: "info"
+    //     }
+    // ];
     const [lang, setLang] = useState('')
     const [code, setCode] = useState('')
     const [isEditable, setIsEditable] = useState(true)
