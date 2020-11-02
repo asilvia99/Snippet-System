@@ -16,7 +16,7 @@ function Snippet(props) {
     const [select, setSelect] = useState({})
 
     const snippetObj = {
-        language: 'javascript',
+        language: null,
         text:' ',
         codingLang:null,
         canEdit: true,

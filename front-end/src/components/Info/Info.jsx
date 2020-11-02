@@ -4,6 +4,7 @@ import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import InfoForm from "./InfoForm";
 import PasswordForm from "./PasswordForm";
+import * as ace from "ace-builds";
 
 
 const options = ['None', 'C', 'C++', 'Java', 'Python', 'SQL'];
@@ -12,6 +13,8 @@ const options = ['None', 'C', 'C++', 'Java', 'Python', 'SQL'];
 function Info({id, isCreator, information, language}) {
     function handleSelect(e) {
         setLang(e.value);
+
+        ace.edit("code-editor-area").getSession().setMode("ace/mode/" + e.value.toLowerCase())
     }
 
     function handleSubmitInfo(value) {
