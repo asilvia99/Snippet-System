@@ -1,0 +1,13 @@
+.editor {
+    height: 100%;
+    text-align: left;
+}
+
+#code-editor-area {
+    border-radius: 5px;
+}
+
+.marker {
+    position: absolute;
+    background: darkblue;
+}

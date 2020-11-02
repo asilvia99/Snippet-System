@@ -1,0 +1,43 @@
+main {
+    display: flex;
+}
+
+.section-a {
+    width: 100%;
+    min-width: 600px;
+}
+
+.section-b {
+    min-width: 600px;
+    padding: 5px;
+}
+
+.info-container {
+    border: 1px #bbb solid;
+    border-radius: 5px;
+    height: 150px;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.control-container {
+    border: 1px #bbb solid;
+    border-radius: 5px;
+    height: 100px;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.editor-container {
+    width: calc(100% - 20px);
+    height: calc(100vh - 100px - 20px);
+    padding: 10px;
+}
+
+.comments-container {
+    height: calc(100vh - 450px);
+    overflow-y: scroll;
+    border: 1px #bbb solid;
+    border-radius: 5px;
+    margin-top: 10px;
+}

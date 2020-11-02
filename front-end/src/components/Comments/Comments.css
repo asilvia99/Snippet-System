@@ -1,0 +1,14 @@
+.comments {
+    padding: 10px;
+    text-align: left;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.comments textarea {
+    width: 100%;
+}

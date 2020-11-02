@@ -1,0 +1,16 @@
+.controls {
+    padding: 10px;
+    text-align: left;
+}
+
+.snippetControls {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    min-height: 100%;
+}
+
+.viewSnippet {
+    display: compact;
+
+}
