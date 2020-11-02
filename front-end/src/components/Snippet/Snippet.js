@@ -17,18 +17,7 @@ function Snippet(props) {
 
     const snippetObj = {
         language: 'javascript',
-        text:
-            `function onLoad(editor) {
-    console.log("i've loaded");
-}
-
-function onLoad(editor) {
-    console.log("i've loaded");
-}
-
-function onLoad(editor) {
-    console.log("i've loaded");
-}`,
+        text:' ',
         canEdit: true,
         comments: [
             // {
@@ -108,7 +97,7 @@ function onLoad(editor) {
                 </section>
                 <section className="section-b">
                     <div className="info-container">
-                        <Info id={props.match.params.id} isCreator={isCreator}/>
+                        <Info id={props.match.params.id } isCreator={isCreator} information = {snippet.info} language={snippet.codingLanguage}/>
                     </div>
                     <div className="control-container">
                         <Controls isCreator={isCreator}/>

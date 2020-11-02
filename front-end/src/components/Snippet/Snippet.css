@@ -9,20 +9,23 @@ main {
 
 .section-b {
     min-width: 600px;
+    padding: 5px;
 }
 
 .info-container {
     border: 1px #bbb solid;
     border-radius: 5px;
-    height: 100px;
+    height: 150px;
     margin-top: 10px;
+    padding: 10px;
 }
 
 .control-container {
     border: 1px #bbb solid;
     border-radius: 5px;
-    height: 150px;
+    height: 100px;
     margin-top: 10px;
+    padding: 10px;
 }
 
 .editor-container {
@@ -32,7 +35,7 @@ main {
 }
 
 .comments-container {
-    height: calc(100vh - 400px);
+    height: calc(100vh - 450px);
     overflow-y: scroll;
     border: 1px #bbb solid;
     border-radius: 5px;
