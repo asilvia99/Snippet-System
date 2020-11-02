@@ -1,16 +1,25 @@
 nav {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    min-height: 10vh;
+    height: 50px;
     background-color: #dc3545;
     color: white;
+    padding: 0 10px;
 }
 
 .nav-links {
-    width: 40%;
     display: flex;
-    justify-content: space-around;
+    padding: 0 10px;
+    justify-content: space-between;
     align-items: center;
     list-style: none;
+}
+
+.nav-links a {
+    color: #777777;
+}
+
+.nav-links img {
+    height: 35px;
 }

@@ -14,7 +14,7 @@ import "ace-builds/src-noconflict/theme-monokai";
 /**
  * for ref: https://github.com/securingsincity/react-ace/blob/master/docs/FAQ.md
  */
-function Editor({language, text, canEdit, snippetId}) {
+function Editor({language, text, canEdit, setCanComment, mark, setSelect, snippetId}) {
     const markers = [
         {
             startRow: 0,
@@ -51,7 +51,7 @@ function Editor({language, text, canEdit, snippetId}) {
     const [lang, setLang] = useState('')
     const [code, setCode] = useState('')
     const [isEditable, setIsEditable] = useState(true)
-    const [select, setSelect] = useState({})
+    // const [select, setSelect] = useState({})
     const [sid, setSid] = useState("")
 
     useEffect(() => {
@@ -75,6 +75,7 @@ function Editor({language, text, canEdit, snippetId}) {
             const headers = {
                 'Content-Type': 'application/json'
             };
+            console.log(text)
             console.log(`https://3rkdcoc9pe.execute-api.us-east-2.amazonaws.com/beta/snippet/${sid}/update/text`)
             const r = await axios.post(`https://3rkdcoc9pe.execute-api.us-east-2.amazonaws.com/beta/snippet/${sid}/update/text`,
                 {text: text},
@@ -101,24 +102,51 @@ function Editor({language, text, canEdit, snippetId}) {
                     }
                 }}
                 onSelectionChange={selection => {
-                    setSelect({
-                        anchorRow: selection.anchor.row,
-                        anchorColumn: selection.anchor.column,
-                        cursorRow: selection.cursor.row,
-                        cursorColumn: selection.cursor.column,
-                    })
+                    if ((selection.anchor.row !== selection.cursor.row) || (selection.anchor.column !== selection.cursor.column)) {
+                        setCanComment(true)
+                    } else {
+                        setCanComment(false)
+                    }
+
+                    let startRow, endRow, startCol, endCol = 0
+
+                    if (selection.anchor.row === selection.cursor.row ) {
+                        if (selection.anchor.column > selection.cursor.column) {
+                            startRow = selection.cursor.row
+                            startCol = selection.cursor.column
+                            endRow = selection.anchor.row
+                            endCol = selection.anchor.column
+                        } else if (selection.anchor.column < selection.cursor.column) {
+                            startRow = selection.anchor.row
+                            startCol = selection.anchor.column
+                            endRow = selection.cursor.row
+                            endCol = selection.cursor.column
+                        }
+                    } else if (selection.anchor.row > selection.cursor.row) {
+                        startRow = selection.cursor.row
+                        startCol = selection.cursor.column
+                        endRow = selection.anchor.row
+                        endCol = selection.anchor.column
+                    } else {
+                        startRow = selection.anchor.row
+                        startCol = selection.anchor.column
+                        endRow = selection.cursor.row
+                        endCol = selection.cursor.column
+                    }
+
+                    setSelect({startRow: startRow, startCol: startCol, endRow: endRow, endCol: endCol})
                 }}
                 name="code-editor-area"
                 editorProps={{$blockScrolling: true}}
                 value={code}
-                markers={markers}
-                annotations={annotations}
+                markers={mark}
+                // annotations={annotations}
                 readOnly={!isEditable}
-                height='90%'
+                height='100%'
                 width='100%'
                 highlightActiveLine={false}
             />
-            <p>{JSON.stringify(select)}</p>
+            {/*<p>{JSON.stringify(select)}</p>*/}
         </div>
     );
 }
