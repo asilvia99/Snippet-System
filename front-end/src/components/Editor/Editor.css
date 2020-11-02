@@ -3,10 +3,9 @@
     text-align: left;
 }
 
-/*#code-editor-area {*/
-/*    width: 100% !important;*/
-/*    height: 100% !important;*/
-/*}*/
+#code-editor-area {
+    border-radius: 5px;
+}
 
 .marker {
     position: absolute;

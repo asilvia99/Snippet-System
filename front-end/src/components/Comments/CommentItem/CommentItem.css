@@ -1,0 +1,19 @@
+.comment {
+    padding: 10px;
+}
+
+li.comment {
+    background: #eee;
+    margin: 10px;
+}
+
+li.comment:hover {
+    background: #ddd;
+}
+
+.comment span {
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: #777;
+}
+
