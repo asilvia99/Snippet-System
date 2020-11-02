@@ -1,16 +1,28 @@
 import React from "react";
 import {useHistory} from "react-router-dom";
-
+import axios from 'axios'
 
 function Home() {
     const history = useHistory();
-    const id = 'ddb7ed69-f520-4f5a-8fe9-08271484b3c7';
     const location = {
-        pathname: "/snippet/" + id,
+        pathname: "",
         state: {isCreator: true}
     }
 
-    function newSnippet() {
+    async function newSnippet() {
+        // call backend to create snippet
+        try {
+            const headers = { 'Content-Type': 'application/json' };
+            const r = await axios.post(`https://3rkdcoc9pe.execute-api.us-east-2.amazonaws.com/beta/snippet/`,
+                {info: '', text: ''},
+                {headers})
+            console.log(r.data.response)
+            location.pathname = "/snippet/" + r.data.response
+
+        } catch (e){
+            console.log('=========================')
+            console.log(e)
+        }
         history.push(location);
     }
 
