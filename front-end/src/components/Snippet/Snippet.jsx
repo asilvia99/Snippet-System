@@ -18,6 +18,7 @@ function Snippet(props) {
     const snippetObj = {
         language: 'javascript',
         text:' ',
+        codingLang:null,
         canEdit: true,
         comments: [
             // {
@@ -43,7 +44,7 @@ function Snippet(props) {
             history.push("/");
         }
 
-        fetchItems(props.match.params.id)
+        fetchSnippet(props.match.params.id)
 
 
         // check if the user is creator
@@ -55,10 +56,11 @@ function Snippet(props) {
 
     }, [props, history]);
 
-    const fetchItems = async (sid) => {
+    const fetchSnippet = async (sid) => {
         const data = await fetch('https://3rkdcoc9pe.execute-api.us-east-2.amazonaws.com/beta/snippet/'+sid)
         const s = await data.json();
         const j = JSON.parse(s.response)
+        console.log(j)
         setSnippet(j)
     }
 
@@ -79,7 +81,7 @@ function Snippet(props) {
                 <section className="section-a">
                     <div className="editor-container">
                         <Editor snippetId={snippet.id}
-                                language={snippet.codingLanguage}
+                                language={snippet.codingLang}
                                 text={snippet.text}
                                 canEdit={snippetObj.canEdit}
                                 setCanComment={setCanComment}
@@ -90,7 +92,7 @@ function Snippet(props) {
                 </section>
                 <section className="section-b">
                     <div className="info-container">
-                        <Info id={props.match.params.id } isCreator={isCreator} information = {snippet.info} language={snippet.codingLanguage}/>
+                        <Info id={props.match.params.id } isCreator={isCreator} information = {snippet.info} language={snippet.codingLang}/>
                     </div>
                     <div className="control-container">
                         <Controls isCreator={isCreator}/>

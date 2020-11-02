@@ -50,14 +50,18 @@ function Editor({language, text, canEdit, setCanComment, mark, setSelect, snippe
     //         type: "info"
     //     }
     // ];
-    const [lang, setLang] = useState('')
+    const [lang, setLang] = useState("")
     const [code, setCode] = useState('')
     const [isEditable, setIsEditable] = useState(true)
     // const [select, setSelect] = useState({})
     const [sid, setSid] = useState("")
 
     useEffect(() => {
-        setLang(language)
+        if (language != null) {
+            let lowerLang = language.toLowerCase()
+
+            setLang(lowerLang)
+        }
     }, [language]);
 
     useEffect(() => {
