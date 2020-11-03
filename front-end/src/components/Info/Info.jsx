@@ -6,9 +6,7 @@ import InfoForm from "./InfoForm";
 import PasswordForm from "./PasswordForm";
 import * as ace from "ace-builds";
 
-
-const options = ['None', 'C', 'C++', 'Java', 'Python', 'SQL'];
-
+import {global_languages as options} from "../Editor/themes_languages"
 
 function Info({id, isCreator, information, language}) {
     function handleSelect(e) {
@@ -26,7 +24,7 @@ function Info({id, isCreator, information, language}) {
     }
 
     const [info, setInfo] = useState('');
-    const [lang, setLang] = useState('None');
+    const [lang, setLang] = useState('');
     const [password, setPass] = useState('');
 
     useEffect(() => {
@@ -53,7 +51,7 @@ function Info({id, isCreator, information, language}) {
                 </div>
                 <div className="languageSelection"> {isCreator && "Language:"}
                     <Dropdown disabled={!isCreator} options={options} onChange={handleSelect}
-                              value={lang} placeholder="Select an option"/>
+                              value={lang} placeholder="Text"/>
                     {/*need to update backend*/}
                 </div>
             </div>

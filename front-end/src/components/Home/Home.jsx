@@ -14,7 +14,7 @@ function Home() {
         try {
             const headers = { 'Content-Type': 'application/json' };
             const r = await axios.post(`https://3rkdcoc9pe.execute-api.us-east-2.amazonaws.com/beta/snippet/`,
-                {info: '', text: ''},
+                {info: '', text: '', codingLang: 'Text'},
                 {headers})
             console.log(r.data.response)
             location.pathname = "/snippet/" + r.data.response
