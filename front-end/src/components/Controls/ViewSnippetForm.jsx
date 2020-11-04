@@ -27,7 +27,7 @@ class ViewSnippetForm extends React.Component {
             <form onSubmit={this.handleSubmit}>
                 <input type="text" value={this.state.value} onChange={this.handleChange}
                        placeholder="Enter snippet id"/>
-                <input type="submit" value="Submit"/>
+                <input type="submit" value="View"/>
             </form>
         );
     }

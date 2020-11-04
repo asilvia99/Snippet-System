@@ -9,7 +9,7 @@ main {
 
 .section-b {
     min-width: 600px;
-    padding: 5px;
+    padding-right: 10px;
 }
 
 .info-container {
@@ -35,7 +35,7 @@ main {
 }
 
 .comments-container {
-    height: calc(100vh - 450px);
+    height: calc(100vh - 437px);
     overflow-y: scroll;
     border: 1px #bbb solid;
     border-radius: 5px;

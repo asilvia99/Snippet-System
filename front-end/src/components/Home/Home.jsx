@@ -1,6 +1,7 @@
 import React from "react";
 import {useHistory} from "react-router-dom";
 import axios from 'axios'
+import ViewSnippetForm from "../Controls/ViewSnippetForm";
 
 function Home() {
     const history = useHistory();
@@ -14,7 +15,7 @@ function Home() {
         try {
             const headers = { 'Content-Type': 'application/json' };
             const r = await axios.post(`https://3rkdcoc9pe.execute-api.us-east-2.amazonaws.com/beta/snippet/`,
-                {info: '', text: ''},
+                {info: '', text: '', codingLang: 'Text'},
                 {headers})
             console.log(r.data.response)
             location.pathname = "/snippet/" + r.data.response
@@ -29,6 +30,7 @@ function Home() {
         <div>
             <h1>Home Page</h1>
             <button className="btnNewSnippet" onClick={newSnippet}>Create a New Snippet</button>
+            <ViewSnippetForm history={useHistory()}/>
         </div>
     );
 }

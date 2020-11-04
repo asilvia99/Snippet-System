@@ -14,7 +14,7 @@ const Footer = () => {
     return (
         <footer>
             <div><strong><code>Snippet System</code></strong>&#160;&#160;&#160;was created as a final project for CS 509 - Design of Software Systems</div>
-            <div><p>By Khalid Alnuaim, Kevin Bimonte, Raysa Rivera-Bergolla, and Allison Silvia</p></div>
+            <div><p>By Khalid Alnuaim, Kevin Bimonte, Raysa Rivera-Bergollo, and Allison Silvia</p></div>
         </footer>
     );
 }

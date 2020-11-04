@@ -5,12 +5,15 @@ import axios from 'axios'
 
 import 'ace-builds/webpack-resolver'
 
-import "ace-builds/src-noconflict/mode-java";
-import "ace-builds/src-noconflict/mode-javascript";
-import "ace-builds/src-noconflict/mode-python";
-
 import "ace-builds/src-noconflict/theme-github";
 import "ace-builds/src-noconflict/theme-monokai";
+
+import {global_languages} from "./themes_languages";
+
+global_languages.forEach(lang => {
+    require(`ace-builds/src-noconflict/mode-${lang.toLowerCase()}`);
+    require(`ace-builds/src-noconflict/snippets/${lang.toLowerCase()}`);
+});
 
 
 /**
@@ -50,14 +53,18 @@ function Editor({language, text, canEdit, setCanComment, mark, setSelect, snippe
     //         type: "info"
     //     }
     // ];
-    const [lang, setLang] = useState('')
+    const [lang, setLang] = useState("")
     const [code, setCode] = useState('')
     const [isEditable, setIsEditable] = useState(true)
     // const [select, setSelect] = useState({})
     const [sid, setSid] = useState("")
 
     useEffect(() => {
-        setLang(language)
+        if (language != null) {
+            let lowerLang = language.toLowerCase()
+
+            setLang(lowerLang)
+        }
     }, [language]);
 
     useEffect(() => {
