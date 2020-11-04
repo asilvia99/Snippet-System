@@ -48,4 +48,4 @@ You are ready to code the back-end.
 When the `npm start` command finishes, you are ready to make realtime changes to the front end.
 
 ## Credits
-Created by Khalid Alnuaim, Kevin Bimonte, Raysa Rivera-Bergolla, and Allison Silvia
+Created by Khalid Alnuaim, Kevin Bimonte, Raysa Rivera-Bergollo, and Allison Silvia
