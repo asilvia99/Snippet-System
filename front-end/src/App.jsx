@@ -19,6 +19,7 @@ function App() {
                 <Nav/>
                 <div className="content-wrap">
                     <Switch>
+                        <Route path="/index.html" exact component={Home}/>
                         <Route path="/" exact component={Home}/>
                         <Route path="/snippet/:id" component={Snippet}/>
                         <Route path="/snippet" exact component={Snippet}/>
