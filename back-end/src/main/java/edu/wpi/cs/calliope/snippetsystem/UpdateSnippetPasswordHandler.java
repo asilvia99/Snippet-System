@@ -8,11 +8,12 @@ import edu.wpi.cs.calliope.snippetsystem.http.UpdateSnippetComponentResponse;
 import edu.wpi.cs.calliope.snippetsystem.http.UpdateSnippetPasswordRequest;
 import edu.wpi.cs.calliope.snippetsystem.model.Snippet;
 
-public class UpdateSnippetPasswordHandler implements RequestHandler<UpdateSnippetPasswordRequest, UpdateSnippetComponentResponse> {
+public class UpdateSnippetPasswordHandler implements IUpdateSnippetHandler, RequestHandler<UpdateSnippetPasswordRequest, UpdateSnippetComponentResponse> {
 
     LambdaLogger logger;
 
-    boolean updateSnippetPassword(String id, String password) throws Exception {
+    @Override
+    public boolean updateSnippetComponent(String id, String str) throws Exception {
         if (logger != null) {
             logger.log("In updateSnippetPassword");
         }
@@ -20,7 +21,7 @@ public class UpdateSnippetPasswordHandler implements RequestHandler<UpdateSnippe
 
         Snippet exists = dao.getSnippet(id);
         if(exists != null) {
-            return dao.updatePassword(id, password);
+            return dao.updatePassword(id, str);
         } else {
             return false;
         }
@@ -40,13 +41,13 @@ public class UpdateSnippetPasswordHandler implements RequestHandler<UpdateSnippe
 
         UpdateSnippetComponentResponse response;
         try {
-            if(updateSnippetPassword(input.getID(), input.getPassword())) {
-                response = new UpdateSnippetComponentResponse(input.getID());
+            if(updateSnippetComponent(input.getID(), input.getPassword())) {
+                response = UpdateSnippetComponentResponse.makeSnippetComponentResponse(input.getID());
             } else {
-                response = new UpdateSnippetComponentResponse(input.getID(), 442);
+                response = UpdateSnippetComponentResponse.makeSnippetComponentResponse(input.getID(), 442);
             }
         } catch (Exception e) {
-            response = new UpdateSnippetComponentResponse("Unable to update snippet password: " + input.getID() + "(" + e.getMessage() + ")", 400);
+            response = UpdateSnippetComponentResponse.makeSnippetComponentResponse("Unable to update snippet password: " + input.getID() + "(" + e.getMessage() + ")", 400);
         }
 
         return response;

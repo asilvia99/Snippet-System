@@ -67,12 +67,12 @@ public class CreateSnippetHandler implements RequestHandler<CreateSnippetRequest
             String uuid = createSnippet(input.getText(), input.getInfo(), input.getPassword(), input.getCodingLang());
 
             if(uuid != null) {
-                response = new CreateSnippetResponse(uuid);
+                response = CreateSnippetResponse.makeCreateSnippetResponse(uuid);
             } else {
-                response = new CreateSnippetResponse("UUID is null", 442);
+                response = CreateSnippetResponse.makeCreateSnippetResponse("UUID is null", 442);
             }
         } catch (Exception e) {
-            response = new CreateSnippetResponse("Unable to create snippet: " + "(" + e.getLocalizedMessage() + ")", 400);
+            response = CreateSnippetResponse.makeCreateSnippetResponse("Unable to create snippet: " + "(" + e.getLocalizedMessage() + ")", 400);
         }
 
         return response;

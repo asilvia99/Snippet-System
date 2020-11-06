@@ -1,10 +1,11 @@
 package edu.wpi.cs.calliope.snippetsystem;
 
 import com.amazonaws.services.lambda.runtime.Context;
-import edu.wpi.cs.calliope.snippetsystem.http.IUpdateSnippetComponentRequest;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
 import edu.wpi.cs.calliope.snippetsystem.http.UpdateSnippetComponentResponse;
+import edu.wpi.cs.calliope.snippetsystem.http.UpdateSnippetInfoRequest;
 
-public class UpdateSnippetInfoHandler implements IUpdateHandler{
+public class UpdateSnippetInfoHandler implements IUpdateSnippetHandler, RequestHandler<UpdateSnippetInfoRequest, UpdateSnippetComponentResponse> {
 
     @Override
     public boolean updateSnippetComponent(String id, String codingLang) throws Exception {
@@ -12,8 +13,7 @@ public class UpdateSnippetInfoHandler implements IUpdateHandler{
     }
 
     @Override
-    public UpdateSnippetComponentResponse handleRequest(IUpdateSnippetComponentRequest input, Context context) {
+    public UpdateSnippetComponentResponse handleRequest(UpdateSnippetInfoRequest input, Context context) {
         return null;
     }
-
 }

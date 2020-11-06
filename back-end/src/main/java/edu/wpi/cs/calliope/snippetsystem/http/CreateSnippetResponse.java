@@ -1,29 +1,21 @@
 package edu.wpi.cs.calliope.snippetsystem.http;
 
-public class CreateSnippetResponse {
-    private final String response;
-    private final int httpCode;
+public class CreateSnippetResponse extends SnippetResponse{
 
-    public CreateSnippetResponse(String id) {
-        this.response = id;
-        httpCode = 200;
+    private CreateSnippetResponse(String id, int code) {
+        super(id, code);
     }
 
-    public CreateSnippetResponse(String id, int code) {
-        this.response = id;
-        httpCode = code;
+    public static CreateSnippetResponse makeCreateSnippetResponse(String snippet) {
+        return new CreateSnippetResponse(snippet, 200);
     }
 
-    public String getResponse() {
-        return response;
-    }
-
-    public int getHttpCode() {
-        return httpCode;
+    public static CreateSnippetResponse makeCreateSnippetResponse(String message, int code) {
+        return new CreateSnippetResponse(message, code);
     }
 
     @Override
     public String toString() {
-        return "Response(" + response + ")";
+        return "Create Snippet Response(" + this.getResponse() + ")";
     }
 }

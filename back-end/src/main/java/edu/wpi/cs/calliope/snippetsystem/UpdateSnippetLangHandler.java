@@ -8,11 +8,12 @@ import edu.wpi.cs.calliope.snippetsystem.http.UpdateSnippetCodingLangRequest;
 import edu.wpi.cs.calliope.snippetsystem.http.UpdateSnippetComponentResponse;
 import edu.wpi.cs.calliope.snippetsystem.model.Snippet;
 
-public class UpdateSnippetLangHandler implements RequestHandler<UpdateSnippetCodingLangRequest, UpdateSnippetComponentResponse> {
+public class UpdateSnippetLangHandler implements IUpdateSnippetHandler, RequestHandler<UpdateSnippetCodingLangRequest, UpdateSnippetComponentResponse> {
 
     LambdaLogger logger;
 
-    boolean updateSnippetCodingLang(String id, String codingLang) throws Exception {
+    @Override
+    public boolean updateSnippetComponent(String id, String codingLang) throws Exception {
         if (logger != null) {
             logger.log("In updateSnippetLang");
         }
@@ -40,13 +41,13 @@ public class UpdateSnippetLangHandler implements RequestHandler<UpdateSnippetCod
 
         UpdateSnippetComponentResponse response;
         try {
-            if(updateSnippetCodingLang(input.getID(), input.getCodingLang())) {
-                response = new UpdateSnippetComponentResponse(input.getID());
+            if(updateSnippetComponent(input.getID(), input.getCodingLang())) {
+                response = UpdateSnippetComponentResponse.makeSnippetComponentResponse(input.getID());
             } else {
-                response = new UpdateSnippetComponentResponse(input.getID(), 442);
+                response = UpdateSnippetComponentResponse.makeSnippetComponentResponse(input.getID(), 442);
             }
         } catch (Exception e) {
-            response = new UpdateSnippetComponentResponse("Unable to update snippet coding language: " + input.getID() + "(" + e.getMessage() + ")", 400);
+            response = UpdateSnippetComponentResponse.makeSnippetComponentResponse("Unable to update snippet coding language: " + input.getID() + "(" + e.getMessage() + ")", 400);
         }
 
         return response;

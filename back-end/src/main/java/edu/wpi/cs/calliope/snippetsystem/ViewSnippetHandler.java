@@ -3,6 +3,7 @@ package edu.wpi.cs.calliope.snippetsystem;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
+import com.google.gson.Gson;
 import edu.wpi.cs.calliope.snippetsystem.db.SnippetDAO;
 import edu.wpi.cs.calliope.snippetsystem.http.ViewSnippetRequest;
 import edu.wpi.cs.calliope.snippetsystem.http.ViewSnippetResponse;
@@ -38,7 +39,8 @@ public class ViewSnippetHandler implements RequestHandler<ViewSnippetRequest, Vi
             Snippet snippet = viewSnippet(input.getID());
 
             if(snippet != null) {
-                response = ViewSnippetResponse.makeViewSnippetResponse(snippet);
+                Gson gson = new Gson();
+                response = ViewSnippetResponse.makeViewSnippetResponse(gson.toJson(snippet));
             } else {
                 response = ViewSnippetResponse.makeViewSnippetResponse(input.getID(), 442);
             }

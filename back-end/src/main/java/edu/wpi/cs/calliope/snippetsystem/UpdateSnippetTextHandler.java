@@ -8,11 +8,12 @@ import edu.wpi.cs.calliope.snippetsystem.http.UpdateSnippetComponentResponse;
 import edu.wpi.cs.calliope.snippetsystem.http.UpdateSnippetTextRequest;
 import edu.wpi.cs.calliope.snippetsystem.model.Snippet;
 
-public class UpdateSnippetTextHandler implements RequestHandler<UpdateSnippetTextRequest, UpdateSnippetComponentResponse> {
+public class UpdateSnippetTextHandler implements IUpdateSnippetHandler, RequestHandler<UpdateSnippetTextRequest, UpdateSnippetComponentResponse> {
 
     LambdaLogger logger;
 
-    boolean updateSnippetText(String id, String text) throws Exception {
+    @Override
+    public boolean updateSnippetComponent(String id, String text) throws Exception {
         if (logger != null) {
             logger.log("In updateSnippetText");
         }
@@ -40,13 +41,13 @@ public class UpdateSnippetTextHandler implements RequestHandler<UpdateSnippetTex
 
         UpdateSnippetComponentResponse response;
         try {
-            if(updateSnippetText(input.getID(), input.getText())) {
-                response = new UpdateSnippetComponentResponse(input.getID());
+            if(updateSnippetComponent(input.getID(), input.getText())) {
+                response = UpdateSnippetComponentResponse.makeSnippetComponentResponse(input.getID());
             } else {
-                response = new UpdateSnippetComponentResponse(input.getID(), 442);
+                response = UpdateSnippetComponentResponse.makeSnippetComponentResponse(input.getID(), 442);
             }
         } catch (Exception e) {
-            response = new UpdateSnippetComponentResponse("Unable to update snippet text: " + input.getID() + "(" + e.getMessage() + ")", 400);
+            response = UpdateSnippetComponentResponse.makeSnippetComponentResponse("Unable to update snippet text: " + input.getID() + "(" + e.getMessage() + ")", 400);
         }
 
         return response;

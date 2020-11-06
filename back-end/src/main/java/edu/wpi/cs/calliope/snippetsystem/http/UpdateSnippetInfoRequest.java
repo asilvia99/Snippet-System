@@ -1,30 +1,28 @@
 package edu.wpi.cs.calliope.snippetsystem.http;
 
-public class UpdateSnippetInfoRequest extends IUpdateSnippetComponentRequest{
+public class UpdateSnippetInfoRequest{
     private String ID;
-    private String codingLang;
+    private String info;
 
     public UpdateSnippetInfoRequest() {
-        super();
     }
 
-    public UpdateSnippetInfoRequest(String ID, String codingLang) {
-        super(ID);
+    public UpdateSnippetInfoRequest(String ID, String info) {
         this.ID = ID;
-        this.codingLang = codingLang;
+        this.info = info;
     }
 
-    public String getCodingLang() {
-        return codingLang;
+    public String getInfo() {
+        return info;
     }
 
-    public void setCodingLang(String codingLang) {
-        this.codingLang = codingLang;
+    public void setInfo(String info) {
+        this.info = info;
     }
 
     @Override
     public String toString() {
-        return "ID: " + ID + "\nCoding Language: " + codingLang;
+        return "ID: " + ID + "\nInfo: " + info;
     }
 }
 
