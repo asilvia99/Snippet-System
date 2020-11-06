@@ -4,8 +4,8 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import edu.wpi.cs.calliope.snippetsystem.db.SnippetDAO;
-import edu.wpi.cs.calliope.snippetsystem.http.UpdateSnippetComponentResponse;
-import edu.wpi.cs.calliope.snippetsystem.http.UpdateSnippetPasswordRequest;
+import edu.wpi.cs.calliope.snippetsystem.http.responses.UpdateSnippetComponentResponse;
+import edu.wpi.cs.calliope.snippetsystem.http.requests.UpdateSnippetPasswordRequest;
 import edu.wpi.cs.calliope.snippetsystem.model.Snippet;
 
 public class UpdateSnippetPasswordHandler implements IUpdateSnippetHandler, RequestHandler<UpdateSnippetPasswordRequest, UpdateSnippetComponentResponse> {

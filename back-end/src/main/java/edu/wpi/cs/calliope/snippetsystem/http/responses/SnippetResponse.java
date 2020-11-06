@@ -1,4 +1,4 @@
-package edu.wpi.cs.calliope.snippetsystem.http;
+package edu.wpi.cs.calliope.snippetsystem.http.responses;
 
 public abstract class SnippetResponse {
     private final String response;

@@ -5,8 +5,8 @@ import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.google.gson.Gson;
 import edu.wpi.cs.calliope.snippetsystem.db.SnippetDAO;
-import edu.wpi.cs.calliope.snippetsystem.http.ViewSnippetRequest;
-import edu.wpi.cs.calliope.snippetsystem.http.ViewSnippetResponse;
+import edu.wpi.cs.calliope.snippetsystem.http.requests.ViewSnippetRequest;
+import edu.wpi.cs.calliope.snippetsystem.http.responses.ViewSnippetResponse;
 import edu.wpi.cs.calliope.snippetsystem.model.Snippet;
 
 public class ViewSnippetHandler implements RequestHandler<ViewSnippetRequest, ViewSnippetResponse> {

@@ -6,8 +6,8 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.fasterxml.uuid.Generators;
 import com.google.gson.Gson;
 import edu.wpi.cs.calliope.snippetsystem.db.SnippetDAO;
-import edu.wpi.cs.calliope.snippetsystem.http.CreateSnippetRequest;
-import edu.wpi.cs.calliope.snippetsystem.http.CreateSnippetResponse;
+import edu.wpi.cs.calliope.snippetsystem.http.requests.CreateSnippetRequest;
+import edu.wpi.cs.calliope.snippetsystem.http.responses.CreateSnippetResponse;
 import edu.wpi.cs.calliope.snippetsystem.model.Snippet;
 
 import java.util.UUID;

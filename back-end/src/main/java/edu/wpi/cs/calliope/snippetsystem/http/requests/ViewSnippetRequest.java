@@ -1,4 +1,4 @@
-package edu.wpi.cs.calliope.snippetsystem.http;
+package edu.wpi.cs.calliope.snippetsystem.http.requests;
 
 public class ViewSnippetRequest {
     private String ID;

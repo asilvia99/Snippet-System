@@ -1,4 +1,4 @@
-package edu.wpi.cs.calliope.snippetsystem.http;
+package edu.wpi.cs.calliope.snippetsystem.http.requests;
 
 public class UpdateSnippetInfoRequest{
     private String ID;
@@ -10,6 +10,14 @@ public class UpdateSnippetInfoRequest{
     public UpdateSnippetInfoRequest(String ID, String info) {
         this.ID = ID;
         this.info = info;
+    }
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
     }
 
     public String getInfo() {

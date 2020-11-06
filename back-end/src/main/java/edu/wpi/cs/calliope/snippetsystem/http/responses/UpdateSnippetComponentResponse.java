@@ -1,4 +1,4 @@
-package edu.wpi.cs.calliope.snippetsystem.http;
+package edu.wpi.cs.calliope.snippetsystem.http.responses;
 
 public class UpdateSnippetComponentResponse extends SnippetResponse {
     private UpdateSnippetComponentResponse(String id, int code) {
