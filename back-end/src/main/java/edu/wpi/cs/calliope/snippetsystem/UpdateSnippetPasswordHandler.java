@@ -4,11 +4,11 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import edu.wpi.cs.calliope.snippetsystem.db.SnippetDAO;
+import edu.wpi.cs.calliope.snippetsystem.http.UpdateSnippetComponentResponse;
 import edu.wpi.cs.calliope.snippetsystem.http.UpdateSnippetPasswordRequest;
-import edu.wpi.cs.calliope.snippetsystem.http.UpdateSnippetPasswordResponse;
 import edu.wpi.cs.calliope.snippetsystem.model.Snippet;
 
-public class UpdateSnippetPasswordHandler implements RequestHandler<UpdateSnippetPasswordRequest, UpdateSnippetPasswordResponse> {
+public class UpdateSnippetPasswordHandler implements RequestHandler<UpdateSnippetPasswordRequest, UpdateSnippetComponentResponse> {
 
     LambdaLogger logger;
 
@@ -34,19 +34,19 @@ public class UpdateSnippetPasswordHandler implements RequestHandler<UpdateSnippe
      * @return
      */
     @Override
-    public UpdateSnippetPasswordResponse handleRequest(UpdateSnippetPasswordRequest input, Context context) {
+    public UpdateSnippetComponentResponse handleRequest(UpdateSnippetPasswordRequest input, Context context) {
         logger = context.getLogger();
         logger.log(input.toString());
 
-        UpdateSnippetPasswordResponse response;
+        UpdateSnippetComponentResponse response;
         try {
             if(updateSnippetPassword(input.getID(), input.getPassword())) {
-                response = new UpdateSnippetPasswordResponse(input.getID());
+                response = new UpdateSnippetComponentResponse(input.getID());
             } else {
-                response = new UpdateSnippetPasswordResponse(input.getID(), 442);
+                response = new UpdateSnippetComponentResponse(input.getID(), 442);
             }
         } catch (Exception e) {
-            response = new UpdateSnippetPasswordResponse("Unable to update snippet password: " + input.getID() + "(" + e.getMessage() + ")", 400);
+            response = new UpdateSnippetComponentResponse("Unable to update snippet password: " + input.getID() + "(" + e.getMessage() + ")", 400);
         }
 
         return response;

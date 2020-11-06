@@ -5,10 +5,10 @@ import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import edu.wpi.cs.calliope.snippetsystem.db.SnippetDAO;
 import edu.wpi.cs.calliope.snippetsystem.http.UpdateSnippetCodingLangRequest;
-import edu.wpi.cs.calliope.snippetsystem.http.UpdateSnippetCodingLangResponse;
+import edu.wpi.cs.calliope.snippetsystem.http.UpdateSnippetComponentResponse;
 import edu.wpi.cs.calliope.snippetsystem.model.Snippet;
 
-public class UpdateSnippetLangHandler implements RequestHandler<UpdateSnippetCodingLangRequest, UpdateSnippetCodingLangResponse> {
+public class UpdateSnippetLangHandler implements RequestHandler<UpdateSnippetCodingLangRequest, UpdateSnippetComponentResponse> {
 
     LambdaLogger logger;
 
@@ -34,19 +34,19 @@ public class UpdateSnippetLangHandler implements RequestHandler<UpdateSnippetCod
      * @return
      */
     @Override
-    public UpdateSnippetCodingLangResponse handleRequest(UpdateSnippetCodingLangRequest input, Context context) {
+    public UpdateSnippetComponentResponse handleRequest(UpdateSnippetCodingLangRequest input, Context context) {
         logger = context.getLogger();
         logger.log(input.toString());
 
-        UpdateSnippetCodingLangResponse response;
+        UpdateSnippetComponentResponse response;
         try {
             if(updateSnippetCodingLang(input.getID(), input.getCodingLang())) {
-                response = new UpdateSnippetCodingLangResponse(input.getID());
+                response = new UpdateSnippetComponentResponse(input.getID());
             } else {
-                response = new UpdateSnippetCodingLangResponse(input.getID(), 442);
+                response = new UpdateSnippetComponentResponse(input.getID(), 442);
             }
         } catch (Exception e) {
-            response = new UpdateSnippetCodingLangResponse("Unable to update snippet coding language: " + input.getID() + "(" + e.getMessage() + ")", 400);
+            response = new UpdateSnippetComponentResponse("Unable to update snippet coding language: " + input.getID() + "(" + e.getMessage() + ")", 400);
         }
 
         return response;

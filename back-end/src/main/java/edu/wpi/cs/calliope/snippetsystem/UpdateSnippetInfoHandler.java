@@ -2,7 +2,7 @@ package edu.wpi.cs.calliope.snippetsystem;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import edu.wpi.cs.calliope.snippetsystem.http.IUpdateSnippetComponentRequest;
-import edu.wpi.cs.calliope.snippetsystem.http.IUpdateSnippetComponentResponse;
+import edu.wpi.cs.calliope.snippetsystem.http.UpdateSnippetComponentResponse;
 
 public class UpdateSnippetInfoHandler implements IUpdateHandler{
 
@@ -12,7 +12,7 @@ public class UpdateSnippetInfoHandler implements IUpdateHandler{
     }
 
     @Override
-    public IUpdateSnippetComponentResponse handleRequest(IUpdateSnippetComponentRequest input, Context context) {
+    public UpdateSnippetComponentResponse handleRequest(IUpdateSnippetComponentRequest input, Context context) {
         return null;
     }
 

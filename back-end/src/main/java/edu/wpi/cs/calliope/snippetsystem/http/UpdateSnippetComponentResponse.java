@@ -1,15 +1,15 @@
 package edu.wpi.cs.calliope.snippetsystem.http;
 
-public class UpdateSnippetInfoResponse implements IUpdateSnippetComponentResponse{
+public class UpdateSnippetComponentResponse {
     private final String response;
     private final int httpCode;
 
-    public UpdateSnippetInfoResponse(String id) {
+    public UpdateSnippetComponentResponse(String id) {
         this.response = id;
         httpCode = 200;
     }
 
-    public UpdateSnippetInfoResponse(String id, int code) {
+    public UpdateSnippetComponentResponse(String id, int code) {
         this.response = id;
         httpCode = code;
     }
