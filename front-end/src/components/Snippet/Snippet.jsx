@@ -14,6 +14,8 @@ function Snippet(props) {
     const [canComment, setCanComment] = useState(false)
     const [mark, setMark] = useState([])
     const [select, setSelect] = useState({})
+    const [isAuthenticated, setIsAuthenticated] = useState(false)
+    const [viewerPassword, setViewerPassword] = useState('')
 
     const snippetObj = {
         // language: null,
@@ -44,15 +46,15 @@ function Snippet(props) {
             history.push("/");
         }
 
-        fetchSnippet(props.match.params.id)
-
-
         // check if the user is creator
         if (props.location.state && props.location.state.isCreator) {
             setIsCreator(true)
+            setIsAuthenticated(true)
         } else {
             setIsCreator(false)
         }
+
+        fetchSnippet(props.match.params.id)
 
     }, [props, history]);
 
@@ -62,6 +64,19 @@ function Snippet(props) {
         const j = JSON.parse(s.response)
         console.log(j)
         setSnippet(j)
+        console.log(j.password)
+        // check if the snippet is password protected
+        if (j.password == '' || !j.password) {
+            console.log("we're authenticated", j.password)
+            setIsAuthenticated(true)
+        } else {
+            console.log("we're not authenticated", j.password)
+            setIsAuthenticated(false)
+        }
+        if (props.location.state && props.location.state.isCreator) {
+            setIsAuthenticated(true)
+        }
+
     }
 
     const addComment = comment => {
@@ -76,7 +91,7 @@ function Snippet(props) {
 
     return (
         <div>
-            {/*<h2>{props.match.params.id}</h2>*/}
+            { isAuthenticated &&
             <main>
                 <section className="section-a">
                     <div className="editor-container">
@@ -106,7 +121,23 @@ function Snippet(props) {
                     </div>
                 </section>
             </main>
-
+            }
+            {!isAuthenticated &&
+            <form onSubmit={(event) => {
+                event.preventDefault();
+                console.log(snippet.password)
+                if(viewerPassword == snippet.password){
+                    setIsAuthenticated(true)
+                }
+                else{
+                    setViewerPassword('')
+                }
+            }}>
+                <input type="password" value={viewerPassword}
+                       onChange={(e)=>setViewerPassword(e.target.value)} placeholder="Enter the password"/>
+                <input type="submit" value="Submit password"/>
+            </form>
+            }
         </div>
     );
 }

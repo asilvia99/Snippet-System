@@ -31,9 +31,6 @@ function Controls({isCreator}) {
     function deleteSnippet() {
         history.push("/");
     }
-    function enablePassword(){
-        alert("Viewers will need this password to view: atklgbhgluf")
-    }
 
     return (
         <div className="controls">
