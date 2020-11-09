@@ -6,7 +6,6 @@ public class CreateSnippetRequest {
     private String password;
     private String codingLang;
 
-    // test to see if i can push
     public CreateSnippetRequest(){
 	
     }

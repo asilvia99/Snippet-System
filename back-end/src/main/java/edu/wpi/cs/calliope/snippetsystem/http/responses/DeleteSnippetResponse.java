@@ -2,6 +2,7 @@ package edu.wpi.cs.calliope.snippetsystem.http.responses;
 
 public class DeleteSnippetResponse extends SnippetResponse{
 
+	
     public DeleteSnippetResponse(String id, int code) {
         super(id, code);
     }
