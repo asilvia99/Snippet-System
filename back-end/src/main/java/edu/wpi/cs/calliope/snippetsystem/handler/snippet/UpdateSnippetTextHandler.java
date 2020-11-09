@@ -1,4 +1,4 @@
-package edu.wpi.cs.calliope.snippetsystem;
+package edu.wpi.cs.calliope.snippetsystem.handler.snippet;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
