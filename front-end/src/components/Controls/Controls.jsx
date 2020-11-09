@@ -43,10 +43,6 @@ function Controls({isCreator}) {
                 {isCreator &&
                 <button className="btnDeleteSnippet" onClick={deleteSnippet}>Delete Snippet</button>
                 }
-                {isCreator &&
-                <button className = "btnPassword" onClick={enablePassword}>Password Protect</button>
-                    //need to update backend
-                }
             </div>
         </div>
     );
