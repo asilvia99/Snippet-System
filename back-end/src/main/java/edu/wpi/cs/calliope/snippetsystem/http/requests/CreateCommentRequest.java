@@ -1,44 +1,61 @@
 package edu.wpi.cs.calliope.snippetsystem.http.requests;
 
-import edu.wpi.cs.calliope.snippetsystem.model.CommentRequest;
 
 
 public class CreateCommentRequest {
-    // So tbh, im not really sure if this is right... we haven't had many other requests in this format but I tried my best
-	// CommentRequest is in the model package
-	private String sID;
-    private CommentRequest CommentRequest;
+    private String S_ID;
+    private String text;
+    private String start;
+    private String end;
 
     public CreateCommentRequest(){
-	
-    }
-    
-    public CreateCommentRequest(String sID, CommentRequest CommentRequest){
-		 this.sID = sID;
-		 this.CommentRequest = CommentRequest;
+
     }
 
-    public String getsID() {
-        return sID;
+    public CreateCommentRequest(String S_ID, String text, String start, String end){
+        this.S_ID = S_ID;
+        this.text = text;
+        this.start = start;
+        this.end = end;
     }
 
-    public void setsID(String sID) {
-        this.sID = sID;
+    public String getS_ID() {
+        return S_ID;
     }
 
-    public CommentRequest getCommentRequest() {
-        return this.CommentRequest;
+    public void setS_ID(String s_ID) {
+        S_ID = s_ID;
     }
 
-    public void setCommentRequest(CommentRequest CommentRequest) {
-		 this.CommentRequest = CommentRequest;
+    public String getText() {
+        return text;
     }
-    
-    
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public String getStart() {
+        return start;
+    }
+
+    public void setStart(String start) {
+        this.start = start;
+    }
+
+    public String getEnd() {
+        return end;
+    }
+
+    public void setEnd(String end) {
+        this.end = end;
+    }
+
     @Override
     public String toString() {
-
-        return  "sID: " + getsID() +
-                "\nComment Request: " + getCommentRequest().toString();
+        return  "S_ID: " + getS_ID() +
+                "\nText: " + getText() +
+                "\nStart Region: " + getStart() +
+                "\nEnd Region: " + getEnd();
     }
 }

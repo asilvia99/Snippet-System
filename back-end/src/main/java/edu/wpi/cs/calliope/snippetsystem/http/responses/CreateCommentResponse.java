@@ -18,8 +18,8 @@ public class CreateCommentResponse {
         return httpCode;
     }
 
-    public static CreateCommentResponse makeCreateCommentResponse(String snippet) {
-        return new CreateCommentResponse(snippet, 200);
+    public static CreateCommentResponse makeCreateCommentResponse(String c_id) {
+        return new CreateCommentResponse(c_id, 200);
     }
 
     public static CreateCommentResponse makeCreateCommentResponse(String message, int code) {
