@@ -210,32 +210,4 @@ public class SnippetDAO {
             throw new Exception("Failed to create snippet: " + e.getMessage());
         }
     }
-
-    /**
-     * Gets a list of all snippets
-     *
-     * @return a list of Snippets
-     * @throws Exception thrown if SQL Exception is triggered
-     */
-    public List<Snippet> getAllSnippets() throws Exception {
-        List<Snippet> allSnippets = new ArrayList<>();
-
-        try {
-            PreparedStatement preparedStatement = conn.prepareStatement("Select * from " + tblName + ";");
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                Snippet snippet = Snippet.makeSnippet(resultSet);
-                allSnippets.add(snippet);
-            }
-
-            resultSet.close();
-            preparedStatement.close();
-            return allSnippets;
-
-        } catch (SQLException e) {
-            throw new Exception("Failed in getting all snippets: " + e.getMessage());
-        }
-    }
-
 }

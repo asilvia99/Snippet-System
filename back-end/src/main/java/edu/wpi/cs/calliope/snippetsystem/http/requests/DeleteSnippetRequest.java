@@ -1,13 +1,13 @@
-package edu.wpi.cs.calliope.snippetsystem.http;
+package edu.wpi.cs.calliope.snippetsystem.http.requests;
 
-public class ViewSnippetRequest {
+public class DeleteSnippetRequest {
     private String ID;
 
-    public ViewSnippetRequest() {
+    public DeleteSnippetRequest() {
 
     }
 
-    public ViewSnippetRequest(String ID) {
+    public DeleteSnippetRequest(String ID) {
         this.ID = ID;
     }
 
@@ -21,6 +21,6 @@ public class ViewSnippetRequest {
 
     @Override
     public String toString() {
-        return ID;
+        return "ID: " + ID;
     }
 }

@@ -1,7 +1,5 @@
 package edu.wpi.cs.calliope.snippetsystem.model;
 
-import com.google.gson.Gson;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.Instant;
@@ -84,16 +82,4 @@ public class Snippet {
     public void setModified(Instant modified) {
         this.modified = modified;
     }
-
-//    public String toJSON() {
-//        return "{" +
-//                "\"id\": \"" + getID() + "\", " +
-//                "\"text\": \"" + getText() + "\", " +
-//                "\"info\": \"" + getInfo() + "\", " +
-//                "\"password\": \"" + getPassword() + "\", " +
-//                "\"codingLanguage\": \"" + getCodingLang() + "\", " +
-//                "\"createDate\": \"" + (getCreated() == null ? "" : getCreated().toString()) + "\", " +
-//                "\"lastModifiedDate\": \"" + (getModified() == null ? "" : getModified().toString()) +
-//                "\" }";
-//    }
 }
