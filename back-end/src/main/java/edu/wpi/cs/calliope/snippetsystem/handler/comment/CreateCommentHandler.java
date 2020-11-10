@@ -27,7 +27,7 @@ public class CreateCommentHandler implements RequestHandler<CreateCommentRequest
      */
     String createComment(String S_ID, String text, String start, String end) throws Exception {
         if (logger != null) {
-            logger.log("In createSnippet");
+            logger.log("In createComment");
         }
         CommentDAO dao = new CommentDAO(logger);
 

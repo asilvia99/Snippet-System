@@ -101,7 +101,8 @@ public class CommentDAO {
             return comment;
 
         } catch (SQLException e) {
-            throw new Exception("Failed in getting the comment with the specified id: " + e.getMessage());
+            e.printStackTrace();
+            return null;
         }
     }
 
