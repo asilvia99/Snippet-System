@@ -19,6 +19,7 @@ function Info({id, isCreator, information, language}) {
 
     function handleSubmitInfo(value) {
         setInfo(value);
+        updateInfo(value);
     }
 
     function handleSubmitPass(value) {
@@ -37,6 +38,8 @@ function Info({id, isCreator, information, language}) {
     useEffect(() => {
         setLang(language);
     }, [language]);
+
+
 
     const updatePassword = async (password) => {
         try {
@@ -64,6 +67,23 @@ function Info({id, isCreator, information, language}) {
             console.log(`https://3rkdcoc9pe.execute-api.us-east-2.amazonaws.com/beta/snippet/${id}/update/codinglang`)
             const r = await axios.post(`https://3rkdcoc9pe.execute-api.us-east-2.amazonaws.com/beta/snippet/${id}/update/codinglang`,
                 {codingLang: lang},
+                {headers})
+            console.log(r)
+        } catch (e){
+            console.log('=========================')
+            console.log(e)
+        }
+    }
+
+    const updateInfo = async (info) => {
+        try {
+            const headers = {
+                'Content-Type': 'application/json'
+            };
+            console.log(info)
+            console.log(`https://3rkdcoc9pe.execute-api.us-east-2.amazonaws.com/beta/snippet/${id}/update/info`)
+            const r = await axios.post(`https://3rkdcoc9pe.execute-api.us-east-2.amazonaws.com/beta/snippet/${id}/update/info`,
+                {info: info},
                 {headers})
             console.log(r)
         } catch (e){

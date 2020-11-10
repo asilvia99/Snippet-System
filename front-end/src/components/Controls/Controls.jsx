@@ -4,7 +4,7 @@ import {useHistory} from "react-router-dom";
 import ViewSnippetForm from "./ViewSnippetForm";
 import axios from "axios";
 
-function Controls({isCreator}) {
+function Controls({id, isCreator}) {
     const history = useHistory();
 
     const location = {
@@ -28,7 +28,17 @@ function Controls({isCreator}) {
         history.push(location);
     }
 
-    function deleteSnippet() {
+    async function deleteSnippet() {
+        // call backend to delete snippet
+        try {
+            const headers = { 'Content-Type': 'application/json' };
+            const r = await axios.post(`https://3rkdcoc9pe.execute-api.us-east-2.amazonaws.com/beta/snippet/${id}/delete`,
+                {},
+                {headers})
+            console.log(r.data.response)
+        } catch (e){
+            console.log(e)
+        }
         history.push("/");
     }
 

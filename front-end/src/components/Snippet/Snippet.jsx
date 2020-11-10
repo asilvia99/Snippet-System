@@ -110,7 +110,7 @@ function Snippet(props) {
                         <Info id={props.match.params.id } isCreator={isCreator} information = {snippet.info} language={snippet.codingLang}/>
                     </div>
                     <div className="control-container">
-                        <Controls isCreator={isCreator}/>
+                        <Controls id={props.match.params.id } isCreator={isCreator}/>
                     </div>
                     <div className="comments-container">
                         <Comments comments={snippetObj.comments}
