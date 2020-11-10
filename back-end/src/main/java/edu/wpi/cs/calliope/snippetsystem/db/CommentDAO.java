@@ -88,6 +88,7 @@ public class CommentDAO {
     public Comment getComment(String id) throws Exception {
         try {
             PreparedStatement preparedStatement = conn.prepareStatement("Select * from " + tblName + " where ID=?;");
+            preparedStatement.setString(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             Comment comment = null;
