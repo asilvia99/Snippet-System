@@ -85,6 +85,26 @@ public class CommentDAO {
         }
     }
 
+    public Comment getComment(String id) throws Exception {
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement("Select * from " + tblName + " where ID=?;");
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            Comment comment = null;
+
+            while (resultSet.next()) {
+                comment = Comment.makeComment(resultSet);
+            }
+
+            resultSet.close();
+            preparedStatement.close();
+            return comment;
+
+        } catch (SQLException e) {
+            throw new Exception("Failed in getting the comment with the specified id: " + e.getMessage());
+        }
+    }
+
     /**
      * Gets a list of all comments for a specified Snippet ID
      *
