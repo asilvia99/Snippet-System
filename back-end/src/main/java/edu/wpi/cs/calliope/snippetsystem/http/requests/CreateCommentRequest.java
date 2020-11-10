@@ -3,7 +3,7 @@ package edu.wpi.cs.calliope.snippetsystem.http.requests;
 
 
 public class CreateCommentRequest {
-    private String S_ID;
+    private String snippetID;
     private String text;
     private String start;
     private String end;
@@ -12,19 +12,19 @@ public class CreateCommentRequest {
 
     }
 
-    public CreateCommentRequest(String S_ID, String text, String start, String end){
-        this.S_ID = S_ID;
+    public CreateCommentRequest(String snippetID, String text, String start, String end){
+        this.snippetID = snippetID;
         this.text = text;
         this.start = start;
         this.end = end;
     }
 
-    public String getS_ID() {
-        return S_ID;
+    public String getSnippetID() {
+        return snippetID;
     }
 
-    public void setS_ID(String s_ID) {
-        S_ID = s_ID;
+    public void setSnippetID(String snippetID) {
+        this.snippetID = snippetID;
     }
 
     public String getText() {
@@ -53,7 +53,7 @@ public class CreateCommentRequest {
 
     @Override
     public String toString() {
-        return  "S_ID: " + getS_ID() +
+        return  "Snippet ID: " + getSnippetID() +
                 "\nText: " + getText() +
                 "\nStart Region: " + getStart() +
                 "\nEnd Region: " + getEnd();

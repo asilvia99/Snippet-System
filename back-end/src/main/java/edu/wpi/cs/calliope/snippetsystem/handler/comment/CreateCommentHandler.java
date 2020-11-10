@@ -64,7 +64,7 @@ public class CreateCommentHandler implements RequestHandler<CreateCommentRequest
 
         CreateCommentResponse response;
         try {
-            String uuid = createComment(input.getS_ID(), input.getText(), input.getStart(), input.getEnd());
+            String uuid = createComment(input.getSnippetID(), input.getText(), input.getStart(), input.getEnd());
 
             if(uuid != null) {
                 response = CreateCommentResponse.makeCreateCommentResponse(uuid);

@@ -38,16 +38,16 @@ public class GetCommentsHandler implements RequestHandler<GetCommentsRequest, Ge
 
         GetCommentsResponse response;
         try {
-            List<Comment> comments = getComments(input.getS_ID());
+            List<Comment> comments = getComments(input.getSnippetID());
 
             if(comments != null) {
                 Gson gson = new Gson();
                 response = GetCommentsResponse.makeGetCommentsResponse(gson.toJson(comments));
             } else {
-                response = GetCommentsResponse.makeGetCommentsResponse(input.getS_ID(), 442);
+                response = GetCommentsResponse.makeGetCommentsResponse(input.getSnippetID(), 442);
             }
         } catch (Exception e) {
-            response = GetCommentsResponse.makeGetCommentsResponse("Unable to create snippet: " + input.getS_ID() + "(" + e.getMessage() + ")", 400);
+            response = GetCommentsResponse.makeGetCommentsResponse("Unable to create snippet: " + input.getSnippetID() + "(" + e.getMessage() + ")", 400);
         }
 
         return response;

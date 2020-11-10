@@ -1,26 +1,26 @@
 package edu.wpi.cs.calliope.snippetsystem.http.requests;
 
 public class GetCommentsRequest {
-    private String S_ID;
+    private String snippetID;
 
     public GetCommentsRequest() {
 
     }
 
-    public GetCommentsRequest(String S_ID) {
-        this.S_ID = S_ID;
+    public GetCommentsRequest(String snippetID) {
+        this.snippetID = snippetID;
     }
 
-    public String getS_ID() {
-        return S_ID;
+    public String getSnippetID() {
+        return snippetID;
     }
 
-    public void setS_ID(String s_ID) {
-        this.S_ID = s_ID;
+    public void setSnippetID(String snippetID) {
+        this.snippetID = snippetID;
     }
 
     @Override
     public String toString() {
-        return S_ID;
+        return snippetID;
     }
 }
