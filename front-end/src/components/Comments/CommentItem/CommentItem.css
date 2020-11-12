@@ -5,6 +5,7 @@
 li.comment {
     background: #eee;
     margin: 10px;
+    border-radius: 5px;
 }
 
 li.comment:hover {

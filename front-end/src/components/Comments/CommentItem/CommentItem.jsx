@@ -1,13 +1,14 @@
 import React from "react";
 import './CommentItem.css'
+import axios from "axios";
 
-function CommentItem({comment, setMark}) {
+function CommentItem({comment, setMark, deleteComment}) {
     const onMouseEnter = () => {
         setMark([{
-            startRow: comment.startRow,
-            startCol: comment.startCol,
-            endRow: comment.endRow,
-            endCol: comment.endCol,
+            startRow: comment.start.split(':')[0],
+            startCol: comment.start.split(':')[1],
+            endRow: comment.end.split(':')[0],
+            endCol: comment.end.split(':')[1],
             className: 'marker',
             type: 'background'
         }])
@@ -21,7 +22,9 @@ function CommentItem({comment, setMark}) {
         <li className="comment" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
             <div>
                 <p>{comment.text}</p>
-                <span>{`StartRow: ${comment.startRow}, StartCol: ${comment.startCol}, EndRow: ${comment.endRow}, EndCol: ${comment.endCol}`}</span>
+                <span>{`StartRow: ${comment.start.split(':')[0]}, StartCol: ${comment.start.split(':')[1]}, EndRow: ${comment.end.split(':')[0]}, EndCol: ${comment.end.split(':')[1]}`}</span>
+                <br/>
+                <button onClick={() => {deleteComment(comment.ID); setMark([])} }>Delete</button>
             </div>
         </li>
     );
