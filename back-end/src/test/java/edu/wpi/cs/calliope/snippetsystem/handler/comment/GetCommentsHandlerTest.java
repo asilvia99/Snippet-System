@@ -26,7 +26,7 @@ public class GetCommentsHandlerTest {
     }
 
     //Checks that the response is 200 if info is put in properly
-    void testGoodInput(Snippet incoming) throws IOException {
+    void testGoodInput(String incoming) throws IOException {
         GetCommentsHandler handler = new GetCommentsHandler();
         String incoming_json = new Gson().toJson(incoming);
         GetCommentsRequest request = new Gson().fromJson(incoming_json, GetCommentsRequest.class);
@@ -55,7 +55,7 @@ public class GetCommentsHandlerTest {
         	cDAO.addComment(comment);
         	cDAO.addComment(comment2);
         	
-        	testGoodInput(snippet);
+        	testGoodInput(sID);
         	
         	//use the snippetDAO to erase dummy snippet and it should delete the comments too
             sDAO.deleteSnippet(sID);
