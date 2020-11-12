@@ -46,10 +46,6 @@ public class CreateCommentHandlerTest {
         Assert.assertEquals(400, response.getHttpCode());
     }
 
-
-    
-    
-
     @Test
     public void testCreateNew() {
         
