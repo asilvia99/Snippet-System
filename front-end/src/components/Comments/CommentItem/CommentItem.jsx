@@ -24,6 +24,8 @@ function CommentItem({comment, setMark, deleteComment}) {
                 <p>{comment.text}</p>
                 <span>{`StartRow: ${comment.start.split(':')[0]}, StartCol: ${comment.start.split(':')[1]}, EndRow: ${comment.end.split(':')[0]}, EndCol: ${comment.end.split(':')[1]}`}</span>
                 <br/>
+                <span>{new Date(comment.created.seconds * 1000).toLocaleString()}</span>
+                <br/>
                 <button onClick={() => {deleteComment(comment.ID); setMark([])} }>Delete</button>
             </div>
         </li>

@@ -60,9 +60,14 @@ function Snippet(props) {
         }
 
         fetchSnippet(props.match.params.id)
-         fetchComments(props.match.params.id)
+        fetchComments(props.match.params.id)
 
     }, [props, history]);
+
+    const refresh = async () => {
+        fetchSnippet(props.match.params.id)
+        fetchComments(props.match.params.id)
+    }
 
     const fetchSnippet = async (sid) => {
         console.log('https://3rkdcoc9pe.execute-api.us-east-2.amazonaws.com/beta/snippet/'+sid)
@@ -149,6 +154,7 @@ function Snippet(props) {
             { isAuthenticated &&
             <main>
                 <section className="section-a">
+                    <button onClick={refresh}>Refresh</button>
                     <div className="editor-container">
                         <Editor snippetId={snippet.id}
                                 language={snippet.codingLang}
