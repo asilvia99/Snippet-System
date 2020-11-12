@@ -22,13 +22,13 @@ public class CreateSnippetHandlerTest {
         return ctx;
     }
 
-    void testGoodInput(Snippet incoming, String outgoing) throws IOException {
+    void testGoodInput(Snippet incoming) throws IOException {
         CreateSnippetHandler handler = new CreateSnippetHandler();
         String incoming_json = new Gson().toJson(incoming);
         CreateSnippetRequest request = new Gson().fromJson(incoming_json, CreateSnippetRequest.class);
 
         CreateSnippetResponse response = handler.handleRequest(request, createContext("Create New Snippet"));
-        Assert.assertEquals(outgoing, response.getResponse());
+        Assert.assertNotNull(response.getResponse());
         Assert.assertEquals(200, response.getHttpCode());
     }
 
@@ -47,10 +47,10 @@ public class CreateSnippetHandlerTest {
 
         String uuidString = uuid.toString();
 
-        Snippet snippet = Snippet.makeSnippet(uuidString, "Some text", "Some info", null, null);
+        Snippet snippet = Snippet.makeSnippet(null, "Some text", "Some info", null, null);
 
         try {
-            testGoodInput(snippet, uuidString);
+            testGoodInput(snippet);
             SnippetDAO dao = new SnippetDAO();
             dao.deleteSnippet(uuidString);
         } catch (Exception e) {

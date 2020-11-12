@@ -19,9 +19,6 @@ public class CreateCommentHandler implements RequestHandler<CreateCommentRequest
     /**
      * returns true if can add to database
      * @param text
-     * @param info
-     * @param password
-     * @param codingLang
      * @return
      * @throws Exception
      */
