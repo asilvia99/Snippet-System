@@ -1,10 +1,7 @@
 package edu.wpi.cs.calliope.snippetsystem.db;
 
-import com.amazonaws.services.lambda.runtime.LambdaLogger;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 
 public class DatabaseUtil {
     // DB user names and passwords (as well as the db endpoint) should never be stored directly in code.
@@ -24,9 +21,8 @@ public class DatabaseUtil {
 
     /**
      * Singleton access to DB connection to share resources effectively across multiple accesses.
-     * @param logger
      */
-    protected static Connection connect(LambdaLogger logger) throws Exception {
+    protected static Connection connect() throws Exception {
         if (conn != null) { return conn; }
 
         // this is resistant to any SQL-injection attack.
@@ -45,10 +41,6 @@ public class DatabaseUtil {
             System.err.println("Environment variable db_host is not set!");
         }
 
-        logger.log("USER: " + db_user);
-        logger.log("PASS: " + db_passwd);
-        logger.log("HOST: " + db_host);
-
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -58,7 +50,6 @@ public class DatabaseUtil {
                     db_passwd);
             return conn;
         } catch (Exception e) {
-            logger.log("DB-ERROR:" + schemaName + "," + db_user + "," + db_passwd + "," + db_host);
             throw new Exception("Failed in database connection");
         }
     }

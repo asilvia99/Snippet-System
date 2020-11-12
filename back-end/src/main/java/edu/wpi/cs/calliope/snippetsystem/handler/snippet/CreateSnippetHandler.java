@@ -29,7 +29,7 @@ public class CreateSnippetHandler implements RequestHandler<CreateSnippetRequest
         if (logger != null) {
             logger.log("In createSnippet");
         }
-        SnippetDAO dao = new SnippetDAO(logger);
+        SnippetDAO dao = new SnippetDAO();
 
         UUID uuid = Generators.timeBasedGenerator().generate();
 
