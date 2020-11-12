@@ -29,7 +29,7 @@ public class CreateCommentHandler implements RequestHandler<CreateCommentRequest
         if (logger != null) {
             logger.log("In createComment");
         }
-        CommentDAO dao = new CommentDAO(logger);
+        CommentDAO dao = new CommentDAO();
 
         UUID uuid = Generators.timeBasedGenerator().generate();
 

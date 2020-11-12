@@ -12,7 +12,6 @@ import java.util.List;
 
 public class AdminDAO {
 
-    private final LambdaLogger logger;
     java.sql.Connection conn;
 
     final String tblName = "snippet_list";   // Exact capitalization
@@ -20,15 +19,12 @@ public class AdminDAO {
     /**
      * Admin (Snippet Summary List) Database Access Object
      */
-    public AdminDAO(LambdaLogger logger) {
-        this.logger = logger;
+    public AdminDAO() {
         try  {
-            conn = DatabaseUtil.connect(logger);
+            conn = DatabaseUtil.connect();
         } catch (Exception e) {
-            logger.log(e.getLocalizedMessage());
             conn = null;
         }
-        logger.log("Conn: " + (conn != null));
     }
 
     /**

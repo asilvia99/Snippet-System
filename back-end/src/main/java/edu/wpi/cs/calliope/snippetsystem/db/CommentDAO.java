@@ -15,7 +15,6 @@ import java.util.List;
  */
 public class CommentDAO {
 
-    private final LambdaLogger logger;
     Connection conn;
 
     final String tblName = "comment";   // Exact capitalization
@@ -23,15 +22,12 @@ public class CommentDAO {
     /**
      * Comment Database Access Object
      */
-    public CommentDAO(LambdaLogger logger) {
-        this.logger = logger;
+    public CommentDAO() {
         try  {
-            conn = DatabaseUtil.connect(logger);
+            conn = DatabaseUtil.connect();
         } catch (Exception e) {
-        	logger.log(e.getLocalizedMessage());
             conn = null;
         }
-        logger.log("Conn: " + (conn != null));
     }
 
     /**

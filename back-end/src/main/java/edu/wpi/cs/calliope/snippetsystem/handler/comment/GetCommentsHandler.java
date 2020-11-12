@@ -19,7 +19,7 @@ public class GetCommentsHandler implements RequestHandler<GetCommentsRequest, Ge
         if (logger != null) {
             logger.log("In getComments");
         }
-        CommentDAO dao = new CommentDAO(logger);
+        CommentDAO dao = new CommentDAO();
 
         return dao.getAllComments(s_id);
     }

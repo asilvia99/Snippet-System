@@ -48,7 +48,7 @@ public class DeleteCommentHandler implements RequestHandler<DeleteCommentRequest
         if (logger != null) {
             logger.log("In deleteComment");
         }
-        CommentDAO dao = new CommentDAO(logger);
+        CommentDAO dao = new CommentDAO();
 
         Comment exists = dao.getComment(id);
         if(exists != null) {
