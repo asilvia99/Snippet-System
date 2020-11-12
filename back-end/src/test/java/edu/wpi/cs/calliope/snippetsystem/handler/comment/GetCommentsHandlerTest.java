@@ -28,8 +28,7 @@ public class GetCommentsHandlerTest {
     //Checks that the response is 200 if info is put in properly
     void testGoodInput(String incoming) throws IOException {
         GetCommentsHandler handler = new GetCommentsHandler();
-        String incoming_json = new Gson().toJson(incoming);
-        GetCommentsRequest request = new Gson().fromJson(incoming_json, GetCommentsRequest.class);
+        GetCommentsRequest request = new Gson().fromJson(incoming, GetCommentsRequest.class);
 
         GetCommentsResponse response = handler.handleRequest(request, createContext("Get Comments"));
         Assert.assertNotNull(response.getResponse());
@@ -43,8 +42,8 @@ public class GetCommentsHandlerTest {
     	//make a snippet with dummy id, add the comment to that snippet
     	String sID = "fakeSid";
     	Snippet snippet = Snippet.makeSnippet(sID, "text", "info", "password", null);
-    	Comment comment = Comment.makeComment(null, sID, "This is the text", "1:1", "10:10");
-    	Comment comment2 = Comment.makeComment(null, sID, "This is the other text", "2:2", "11:11");
+    	Comment comment = Comment.makeComment("testComment1", sID, "This is the text", "1:1", "10:10");
+    	Comment comment2 = Comment.makeComment("testComment2", sID, "This is the other text", "2:2", "11:11");
 
 
         try {        
@@ -55,7 +54,7 @@ public class GetCommentsHandlerTest {
         	cDAO.addComment(comment);
         	cDAO.addComment(comment2);
         	
-        	testGoodInput(sID);
+        	testGoodInput("{\"snippetID\": \"" + sID + "\"}");
         	
         	//use the snippetDAO to erase dummy snippet and it should delete the comments too
             sDAO.deleteSnippet(sID);
