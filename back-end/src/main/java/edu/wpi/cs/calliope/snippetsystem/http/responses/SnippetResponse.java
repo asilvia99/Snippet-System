@@ -1,15 +1,10 @@
-package edu.wpi.cs.calliope.snippetsystem.http;
+package edu.wpi.cs.calliope.snippetsystem.http.responses;
 
-public class CreateSnippetResponse {
+public abstract class SnippetResponse {
     private final String response;
     private final int httpCode;
 
-    public CreateSnippetResponse(String id) {
-        this.response = id;
-        httpCode = 200;
-    }
-
-    public CreateSnippetResponse(String id, int code) {
+    public SnippetResponse(String id, int code) {
         this.response = id;
         httpCode = code;
     }
