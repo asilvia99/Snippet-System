@@ -61,20 +61,26 @@ function Snippet(props) {
     const fetchSnippet = async (sid) => {
         const data = await fetch('https://3rkdcoc9pe.execute-api.us-east-2.amazonaws.com/beta/snippet/'+sid)
         const s = await data.json();
-        const j = JSON.parse(s.response)
-        console.log(j)
-        setSnippet(j)
-        console.log(j.password)
-        // check if the snippet is password protected
-        if (j.password == '' || !j.password) {
-            console.log("we're authenticated", j.password)
-            setIsAuthenticated(true)
+        const status = JSON.parse(s.httpCode)
+        if (status == 200){
+            const j = JSON.parse(s.response)
+            console.log(j)
+            setSnippet(j)
+            console.log(j.password)
+            // check if the snippet is password protected
+            if (j.password == '' || !j.password) {
+                console.log("we're authenticated", j.password)
+                setIsAuthenticated(true)
+            } else {
+                console.log("we're not authenticated", j.password)
+                setIsAuthenticated(false)
+            }
+            if (props.location.state && props.location.state.isCreator) {
+                setIsAuthenticated(true)
+            }
         } else {
-            console.log("we're not authenticated", j.password)
-            setIsAuthenticated(false)
-        }
-        if (props.location.state && props.location.state.isCreator) {
-            setIsAuthenticated(true)
+            console.log("S couldn't be found:", s)
+            history.push("/");
         }
 
     }
