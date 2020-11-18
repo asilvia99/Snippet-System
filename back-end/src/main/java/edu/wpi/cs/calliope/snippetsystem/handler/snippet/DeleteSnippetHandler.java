@@ -47,7 +47,7 @@ public class DeleteSnippetHandler implements RequestHandler<DeleteSnippetRequest
         if (logger != null) {
             logger.log("In deleteSnippet");
         }
-        SnippetDAO dao = new SnippetDAO(logger);
+        SnippetDAO dao = new SnippetDAO();
 
         Snippet exists = dao.getSnippet(id);
         if(exists != null) {

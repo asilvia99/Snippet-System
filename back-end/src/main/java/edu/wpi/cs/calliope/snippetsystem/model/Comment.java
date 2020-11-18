@@ -7,7 +7,7 @@ import java.time.Instant;
 public class Comment {
 
     private final String ID;
-    private final String S_ID;
+    private final String snippetID;
     private final String text;
     private final String start;
     private final String end;
@@ -15,7 +15,7 @@ public class Comment {
 
     private Comment(String id, String s_id, String text, String start, String end, Instant created) {
         this.ID = id;
-        this.S_ID = s_id;
+        this.snippetID = s_id;
         this.text = text;
         this.start = start;
         this.end = end;
@@ -44,8 +44,8 @@ public class Comment {
         return ID;
     }
 
-    public String getS_ID() {
-        return S_ID;
+    public String getSnippetID() {
+        return snippetID;
     }
 
     public String getText() {

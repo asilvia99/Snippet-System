@@ -1,18 +1,16 @@
 package edu.wpi.cs.calliope.snippetsystem.db;
 
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-
-import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import edu.wpi.cs.calliope.snippetsystem.model.Snippet;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * Gets a snippet from the database
  */
 public class SnippetDAO {
 
-    private final LambdaLogger logger;
     java.sql.Connection conn;
 
     final String tblName = "snippet";   // Exact capitalization
@@ -20,15 +18,12 @@ public class SnippetDAO {
     /**
      * Snippet Database Access Object
      */
-    public SnippetDAO(LambdaLogger logger) {
-        this.logger = logger;
+    public SnippetDAO() {
         try  {
-            conn = DatabaseUtil.connect(logger);
+            conn = DatabaseUtil.connect();
         } catch (Exception e) {
-        	logger.log(e.getLocalizedMessage());
             conn = null;
         }
-        logger.log("Conn: " + (conn != null));
     }
 
     /**
@@ -76,11 +71,8 @@ public class SnippetDAO {
             int numAffected = preparedStatement.executeUpdate();
             preparedStatement.close();
 
-            logger.log(String.valueOf(numAffected));
-
             return numAffected == 1;
         } catch (SQLException e) {
-            logger.log("Failed to update snippet text: " + e.getMessage());
             throw new Exception("Failed to update snippet text: " + e.getMessage());
         }
     }
@@ -102,11 +94,8 @@ public class SnippetDAO {
             int numAffected = preparedStatement.executeUpdate();
             preparedStatement.close();
 
-            logger.log(String.valueOf(numAffected));
-
             return numAffected == 1;
         } catch (SQLException e) {
-            logger.log("Failed to update snippet password: " + e.getMessage());
             throw new Exception("Failed to update snippet password: " + e.getMessage());
         }
     }
@@ -128,11 +117,8 @@ public class SnippetDAO {
             int numAffected = preparedStatement.executeUpdate();
             preparedStatement.close();
 
-            logger.log(String.valueOf(numAffected));
-
             return numAffected == 1;
         } catch (SQLException e) {
-            logger.log("Failed to update snippet coding language: " + e.getMessage());
             throw new Exception("Failed to update snippet coding language: " + e.getMessage());
         }
     }

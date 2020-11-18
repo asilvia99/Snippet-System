@@ -19,9 +19,6 @@ public class CreateCommentHandler implements RequestHandler<CreateCommentRequest
     /**
      * returns true if can add to database
      * @param text
-     * @param info
-     * @param password
-     * @param codingLang
      * @return
      * @throws Exception
      */
@@ -29,7 +26,7 @@ public class CreateCommentHandler implements RequestHandler<CreateCommentRequest
         if (logger != null) {
             logger.log("In createComment");
         }
-        CommentDAO dao = new CommentDAO(logger);
+        CommentDAO dao = new CommentDAO();
 
         UUID uuid = Generators.timeBasedGenerator().generate();
 

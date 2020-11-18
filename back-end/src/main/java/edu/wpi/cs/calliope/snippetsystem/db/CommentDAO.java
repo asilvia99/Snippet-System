@@ -1,6 +1,5 @@
 package edu.wpi.cs.calliope.snippetsystem.db;
 
-import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import edu.wpi.cs.calliope.snippetsystem.model.Comment;
 
 import java.sql.Connection;
@@ -15,7 +14,6 @@ import java.util.List;
  */
 public class CommentDAO {
 
-    private final LambdaLogger logger;
     Connection conn;
 
     final String tblName = "comment";   // Exact capitalization
@@ -23,15 +21,12 @@ public class CommentDAO {
     /**
      * Comment Database Access Object
      */
-    public CommentDAO(LambdaLogger logger) {
-        this.logger = logger;
+    public CommentDAO() {
         try  {
-            conn = DatabaseUtil.connect(logger);
+            conn = DatabaseUtil.connect();
         } catch (Exception e) {
-        	logger.log(e.getLocalizedMessage());
             conn = null;
         }
-        logger.log("Conn: " + (conn != null));
     }
 
     /**
@@ -74,7 +69,7 @@ public class CommentDAO {
 
             preparedStatement = conn.prepareStatement("INSERT INTO " + tblName + "(ID, S_ID, Text, Start, End) value (?,?,?,?,?)");
             preparedStatement.setString(1, comment.getID());
-            preparedStatement.setString(2, comment.getS_ID());
+            preparedStatement.setString(2, comment.getSnippetID());
             preparedStatement.setString(3, comment.getText());
             preparedStatement.setString(4, comment.getStart());
             preparedStatement.setString(5, comment.getEnd());

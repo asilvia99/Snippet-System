@@ -17,7 +17,7 @@ public class UpdateSnippetLangHandler implements IUpdateSnippetHandler, RequestH
         if (logger != null) {
             logger.log("In updateSnippetLang");
         }
-        SnippetDAO dao = new SnippetDAO(logger);
+        SnippetDAO dao = new SnippetDAO();
 
         Snippet exists = dao.getSnippet(id);
         if(exists != null) {
