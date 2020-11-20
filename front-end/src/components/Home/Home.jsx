@@ -1,5 +1,5 @@
 import React from "react";
-import {useHistory} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import axios from 'axios'
 import ViewSnippetForm from "../Controls/ViewSnippetForm";
 
@@ -31,6 +31,8 @@ function Home() {
             <h1>Home Page</h1>
             <button className="btnNewSnippet" onClick={newSnippet}>Create a New Snippet</button>
             <ViewSnippetForm history={useHistory()}/>
+            <Link to='/admin'> <button> Admin Page </button> </Link>
+
         </div>
     );
 }
