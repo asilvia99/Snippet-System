@@ -1,0 +1,16 @@
+.snippet {
+    padding: 10px;
+}
+
+li.snippet {
+    background: #eee;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.snippet span {
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: #777;
+}
+

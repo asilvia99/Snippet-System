@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import './Admin.css'
 import RemoveStale from "./RemoveStale/RemoveStale";
 import SnippetList from "./SnippetList/SnippetList";
+import axios from "axios";
 
 function Admin(props) {
     const [snippets, setSnippets] = useState([]);
@@ -19,38 +20,62 @@ function Admin(props) {
     }
 
     const fetchSnippets = async () => {
-        // console.log('https://3rkdcoc9pe.execute-api.us-east-2.amazonaws.com/beta/comments/'+sid)
-        // const data = await fetch('https://3rkdcoc9pe.execute-api.us-east-2.amazonaws.com/beta/comments/'+sid)
+        //console.log('https://3rkdcoc9pe.execute-api.us-east-2.amazonaws.com/beta/snippets/')
+        //const data = await fetch('https://3rkdcoc9pe.execute-api.us-east-2.amazonaws.com/beta/snippets/')
         // const s = await data.json();
         // const j = JSON.parse(s.response)
         // console.log(j)
-        // setComments(j)
+
+        setSnippets([{ID:"123", info: "example info", codingLang:"Java", lastModified:"fake date"}, {ID:"125", info: "example info", codingLang:"Java", lastModified:"fake date"}, , {ID:"125", info: "example info", codingLang:"Java", lastModified:"fake date"},
+            , {ID:"125", info: "example info", codingLang:"Java", lastModified:"fake date"},, {ID:"125", info: "example info", codingLang:"Java", lastModified:"fake date"},
+            , {ID:"125", info: "example info", codingLang:"Java", lastModified:"fake date"},, {ID:"125", info: "example info", codingLang:"Java", lastModified:"fake date"},, {ID:"125", info: "example info", codingLang:"Java", lastModified:"fake date"},
+            , {ID:"125", info: "example info", codingLang:"Java", lastModified:"fake date"}])
+        console.log("Inside fetchSnippets")
     }
 
     const deleteSnippet = async sID => {
-        console.log('Delete comment:', sID)
-        try {
-            const headers = {
-                'Content-Type': 'application/json'
-            };
-            //const r = await axios.post(`https://3rkdcoc9pe.execute-api.us-east-2.amazonaws.com/beta/comment/${cID}/delete`,
-             /*   {},
-                {headers})*/
-            //console.log(r)
-        } catch (e){
-            //console.log(e)
+        const result = window.confirm("Are you sure you want to delete?")
+        if (result) {
+            // call backend to delete snippet
+            try {
+                const headers = {'Content-Type': 'application/json'};
+                const r = await axios.post(`https://3rkdcoc9pe.execute-api.us-east-2.amazonaws.com/beta/snippet/${sID}/delete`,
+                    {},
+                    {headers})
+                console.log(r.data.response)
+            } catch (e) {
+                console.log(e)
+            }
+            fetchSnippets()
         }
 
-
     }
+
+    const removeStaleSnippets = async days => {
+        const result = window.confirm("Are you sure you want to remove these?")
+        if (result) {
+            // call backend to delete snippets
+            try {
+                const headers = {'Content-Type': 'application/json'};
+                // const r = await axios.post(`https://3rkdcoc9pe.execute-api.us-east-2.amazonaws.com/beta/snippet/${sID}/delete`,
+                //     {},
+                //     {headers})
+                // console.log(r.data.response)
+                fetchSnippets()
+            } catch (e) {
+                console.log(e)
+            }
+        }
+    }
+
 
 
     return (
         <div>
             { isAuthenticated &&
             <main className = "adminMain">
-                <section> <RemoveStale/> </section>
-                <section> <SnippetList/> </section>
+                <section> <RemoveStale removeStaleSnippets={removeStaleSnippets}/> </section>
+                <section> <SnippetList snippets={snippets} deleteSnippet={deleteSnippet}/> </section>
             </main>
             }
             {!isAuthenticated &&

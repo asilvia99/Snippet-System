@@ -1,12 +1,14 @@
-import React from "react";
+import React, {useState} from "react";
 import "./RemoveStale.css"
 
-function RemoveStale() {
+function RemoveStale({removeStaleSnippets}) {
+    const [staleDays, setStaleDays] = useState("")
 
 
     return (
         <div>
-                Remove Stale Snippets
+            <input type="text" value={staleDays} onChange={event => setStaleDays(event.target.value)} placeholder="Enter the number of days old to remove"/>
+            <button onClick={() => {removeStaleSnippets(staleDays)} }> Remove </button>
         </div>
     );
 }

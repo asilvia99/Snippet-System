@@ -29,17 +29,21 @@ function Controls({id, isCreator}) {
     }
 
     async function deleteSnippet() {
-        // call backend to delete snippet
-        try {
-            const headers = { 'Content-Type': 'application/json' };
-            const r = await axios.post(`https://3rkdcoc9pe.execute-api.us-east-2.amazonaws.com/beta/snippet/${id}/delete`,
-                {},
-                {headers})
-            console.log(r.data.response)
-        } catch (e){
-            console.log(e)
+
+        const result = window.confirm("Are you sure you want to delete?")
+        if (result) {
+            // call backend to delete snippet
+            try {
+                const headers = {'Content-Type': 'application/json'};
+                const r = await axios.post(`https://3rkdcoc9pe.execute-api.us-east-2.amazonaws.com/beta/snippet/${id}/delete`,
+                    {},
+                    {headers})
+                console.log(r.data.response)
+            } catch (e) {
+                console.log(e)
+            }
+            history.push("/");
         }
-        history.push("/");
     }
 
     return (
