@@ -33,7 +33,6 @@ public class ListSnippetsHandler implements RequestHandler<Object, GetSnippetSum
     @Override
     public GetSnippetSummariesResponse handleRequest(Object input, Context context) {
         logger = context.getLogger();
-        logger.log(input.toString());
 
         GetSnippetSummariesResponse response;
         try {

@@ -56,6 +56,15 @@ public class AdminDAO {
 
     public boolean removeStaleSnippets(int days) {
         // TODO - Write SQL Statement, Figure out what to return (Admin shouldn't need the list back)
+
+        try {
+            PreparedStatement statement = conn.prepareStatement("Delete snippet from snippet_list inner join snippet on ID = Snippet_ID WHERE Last_Modified < DATE_SUB(NOW(), INTERVAL ? DAY);");
+            statement.setInt(1, days);
+        } catch(SQLException e) {
+
+        }
+
+
         return false;
     }
 }
