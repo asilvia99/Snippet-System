@@ -20,16 +20,16 @@ function Admin(props) {
     }
 
     const fetchSnippets = async () => {
-        //console.log('https://3rkdcoc9pe.execute-api.us-east-2.amazonaws.com/beta/snippets/')
-        //const data = await fetch('https://3rkdcoc9pe.execute-api.us-east-2.amazonaws.com/beta/snippets/')
-        // const s = await data.json();
-        // const j = JSON.parse(s.response)
-        // console.log(j)
-
-        setSnippets([{ID:"123", info: "example info", codingLang:"Java", lastModified:"fake date"}, {ID:"125", info: "example info", codingLang:"Java", lastModified:"fake date"}, , {ID:"125", info: "example info", codingLang:"Java", lastModified:"fake date"},
-            , {ID:"125", info: "example info", codingLang:"Java", lastModified:"fake date"},, {ID:"125", info: "example info", codingLang:"Java", lastModified:"fake date"},
-            , {ID:"125", info: "example info", codingLang:"Java", lastModified:"fake date"},, {ID:"125", info: "example info", codingLang:"Java", lastModified:"fake date"},, {ID:"125", info: "example info", codingLang:"Java", lastModified:"fake date"},
-            , {ID:"125", info: "example info", codingLang:"Java", lastModified:"fake date"}])
+        console.log('https://3rkdcoc9pe.execute-api.us-east-2.amazonaws.com/beta/admin/list')
+        const data = await fetch('https://3rkdcoc9pe.execute-api.us-east-2.amazonaws.com/beta/admin/list')
+        const s = await data.json();
+        const j = JSON.parse(s.response)
+        console.log(j)
+        setSnippets(j)
+        // setSnippets([{ID:"123", info: "example info", codingLang:"Java", lastModified:"fake date"}, {ID:"125", info: "example info", codingLang:"Java", lastModified:"fake date"}, , {ID:"125", info: "example info", codingLang:"Java", lastModified:"fake date"},
+        //     , {ID:"125", info: "example info", codingLang:"Java", lastModified:"fake date"},, {ID:"125", info: "example info", codingLang:"Java", lastModified:"fake date"},
+        //     , {ID:"125", info: "example info", codingLang:"Java", lastModified:"fake date"},, {ID:"125", info: "example info", codingLang:"Java", lastModified:"fake date"},, {ID:"125", info: "example info", codingLang:"Java", lastModified:"fake date"},
+        //     , {ID:"125", info: "example info", codingLang:"Java", lastModified:"fake date"}])
         console.log("Inside fetchSnippets")
     }
 
@@ -39,7 +39,7 @@ function Admin(props) {
             // call backend to delete snippet
             try {
                 const headers = {'Content-Type': 'application/json'};
-                const r = await axios.post(`https://3rkdcoc9pe.execute-api.us-east-2.amazonaws.com/beta/snippet/${sID}/delete`,
+                const r = await axios.post(`https://3rkdcoc9pe.execute-api.us-east-2.amazonaws.com/beta/admin/${sID}/delete`,
                     {},
                     {headers})
                 console.log(r.data.response)
@@ -57,10 +57,11 @@ function Admin(props) {
             // call backend to delete snippets
             try {
                 const headers = {'Content-Type': 'application/json'};
-                // const r = await axios.post(`https://3rkdcoc9pe.execute-api.us-east-2.amazonaws.com/beta/snippet/${sID}/delete`,
-                //     {},
-                //     {headers})
-                // console.log(r.data.response)
+                const r = await axios.post(`https://3rkdcoc9pe.execute-api.us-east-2.amazonaws.com/beta/admin/remove`,
+                    {days:days},
+                    {headers})
+                console.log(days)
+                console.log(r.data.response)
                 fetchSnippets()
             } catch (e) {
                 console.log(e)
@@ -74,6 +75,7 @@ function Admin(props) {
         <div>
             { isAuthenticated &&
             <main className = "adminMain">
+                <button onClick={refresh}>Refresh</button>
                 <section> <RemoveStale removeStaleSnippets={removeStaleSnippets}/> </section>
                 <section> <SnippetList snippets={snippets} deleteSnippet={deleteSnippet}/> </section>
             </main>

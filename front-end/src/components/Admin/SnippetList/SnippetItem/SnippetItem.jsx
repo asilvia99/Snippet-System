@@ -6,7 +6,7 @@ function SnippetItem({snippet, deleteSnippet}) {
 
     return (
 
-        <tr> <td> {snippet.ID} </td> <td> {snippet.info} </td> <td> {snippet.codingLang} </td> <td> {snippet.lastModified}</td> <td> {snippet.lastModified} </td> <td><button onClick={() => {deleteSnippet(snippet.ID)} }>Delete</button></td></tr>
+        <tr><td>{snippet.ID}</td><td>{snippet.info}</td><td>{snippet.commentCount}</td><td>{new Date(snippet.created.seconds * 1000).toLocaleString()}</td><td>{new Date(snippet.lastModified.seconds * 1000).toLocaleString()}</td><td><button onClick={() => {deleteSnippet(snippet.ID)} }>Delete</button></td></tr>
 
 
     // <li className="snippet" >
