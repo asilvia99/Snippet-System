@@ -7,7 +7,6 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 import edu.wpi.cs.calliope.snippetsystem.db.AdminDAO;
 import edu.wpi.cs.calliope.snippetsystem.http.requests.DeleteStaleRequest;
 import edu.wpi.cs.calliope.snippetsystem.http.responses.DeleteStaleResponse;
-import edu.wpi.cs.calliope.snippetsystem.model.Snippet;
 
 public class DeleteStaleHandler implements RequestHandler<DeleteStaleRequest, DeleteStaleResponse> {
 
@@ -27,7 +26,7 @@ public class DeleteStaleHandler implements RequestHandler<DeleteStaleRequest, De
         DeleteStaleResponse response;
         try {
             if(deleteStaleSnippets(input.getDays())) {
-                response = DeleteStaleResponse.makeDeleteStaleResponse("Response: Successfuly deleted " + input.getDays() + " day old snippets.");
+                response = DeleteStaleResponse.makeDeleteStaleResponse("Response: Successfully deleted " + input.getDays() + " day old snippets.");
             } else {
                 response = DeleteStaleResponse.makeDeleteStaleResponse("Response: Error Deleting Snippets", 442);
             }
@@ -50,7 +49,5 @@ public class DeleteStaleHandler implements RequestHandler<DeleteStaleRequest, De
         }
         AdminDAO dao = new AdminDAO();
         return dao.removeStaleSnippets(days);
-        
-        
     }
 }
