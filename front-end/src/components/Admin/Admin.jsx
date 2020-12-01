@@ -11,7 +11,7 @@ function Admin(props) {
 
     useEffect(() => {
         // here we will get the s3 password
-        setIsAuthenticated(true)  // only for dev
+        setIsAuthenticated(false)  // only for dev
         fetchSnippets()
     }, [props]);
 
@@ -69,6 +69,29 @@ function Admin(props) {
         }
     }
 
+    const checkPassword = async (e, password) => {
+        e.preventDefault();
+        try {
+            const headers = {'Content-Type': 'application/json'};
+            const r = await axios.post(`https://3rkdcoc9pe.execute-api.us-east-2.amazonaws.com/beta/admin/check`,
+                {password:password},
+                {headers})
+
+            if(r.data.response == 'Success') {
+                setIsAuthenticated(true)
+            } else {
+                setAdminPassword('')
+                window.alert('Wrong Password!')
+            }
+
+        } catch (e) {
+            console.log(e)
+        }
+
+
+
+    }
+
 
 
     return (
@@ -81,15 +104,7 @@ function Admin(props) {
             </main>
             }
             {!isAuthenticated &&
-            <form onSubmit={(event) => {
-                event.preventDefault();
-                if(adminPassword == 'password123'){ //need to see how to get it from the bucket
-                    setIsAuthenticated(true)
-                }
-                else{
-                    setAdminPassword('')
-                }
-            }}>
+            <form onSubmit={(event) => {checkPassword(event, adminPassword)}}>
                 <input type="password" value={adminPassword}
                        onChange={(e)=>setAdminPassword(e.target.value)} placeholder="Enter the password"/>
                 <input type="submit" value="Submit password"/>
