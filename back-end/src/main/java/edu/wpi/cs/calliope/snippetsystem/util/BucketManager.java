@@ -2,7 +2,7 @@ package edu.wpi.cs.calliope.snippetsystem.util;
 
 public class BucketManager {
 
-    private final String bucket = "snippetsystem";
+    private final String bucket = "cs509-snippetsystem";
 
     private final String folder = "password/";
     private final String test_folder = "test_password/";
