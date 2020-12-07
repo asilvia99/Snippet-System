@@ -25,7 +25,6 @@ function App() {
                         <Route path="/snippet/:id" component={Snippet}/>
                         <Route path="/snippet" exact component={Snippet}/>
                         <Route path="/admin" exact component={Admin}/>
-
                     </Switch>
                 </div>
                 <Footer/>
