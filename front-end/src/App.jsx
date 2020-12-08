@@ -4,6 +4,7 @@ import './App.css';
 import Nav from "./components/Nav/Nav";
 import Home from "./components/Home/Home";
 import Snippet from "./components/Snippet/Snippet";
+import Admin from "./components/Admin/Admin";
 
 import {
     BrowserRouter as Router,
@@ -23,6 +24,7 @@ function App() {
                         <Route path="/" exact component={Home}/>
                         <Route path="/snippet/:id" component={Snippet}/>
                         <Route path="/snippet" exact component={Snippet}/>
+                        <Route path="/admin" exact component={Admin}/>
                     </Switch>
                 </div>
                 <Footer/>

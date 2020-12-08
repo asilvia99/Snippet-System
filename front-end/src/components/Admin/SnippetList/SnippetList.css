@@ -1,0 +1,33 @@
+.snippets {
+    padding: 10px;
+    text-align: left;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+table,
+td {
+    border: 1px solid #333;
+    padding: 3px;
+
+}
+
+thead,
+tfoot {
+    background-color: #333;
+    color: #fff;
+    padding: 3px;
+}
+
+th{
+    padding: 3px;
+    text-align:center;
+}
+
+table{
+    width:100%;
+}
