@@ -1,21 +1,17 @@
 package edu.wpi.cs.calliope.snippetsystem.handler.comment;
 
 import com.amazonaws.services.lambda.runtime.Context;
-import com.fasterxml.uuid.Generators;
 import com.google.gson.Gson;
 import edu.wpi.cs.calliope.snippetsystem.TestContext;
-import edu.wpi.cs.calliope.snippetsystem.db.CommentDAO;
 import edu.wpi.cs.calliope.snippetsystem.db.SnippetDAO;
 import edu.wpi.cs.calliope.snippetsystem.http.requests.CreateCommentRequest;
 import edu.wpi.cs.calliope.snippetsystem.http.responses.CreateCommentResponse;
 import edu.wpi.cs.calliope.snippetsystem.model.Comment;
 import edu.wpi.cs.calliope.snippetsystem.model.Snippet;
-
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.util.UUID;
 
 public class CreateCommentHandlerTest {
 
