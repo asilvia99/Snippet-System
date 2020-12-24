@@ -1,5 +1,5 @@
 # CS509-SnippetSystem
-This Project was created for CS509 - Design of Software Systems. For this project, I was responsible for working on the back-end team. I wrote and tested our lambda functions including RequestHandler, Response, and Request classes for various lambdas in the snippet system. A video demo of this project can be found on my personal website. 
+This Project was created for CS509 - Design of Software Systems. For this project, I was responsible for working on the back-end team. I wrote and tested our lambda functions including RequestHandler, Response, and Request classes for various lambdas in the snippet system. The project is no longer functional since we have taken down our AWS account after the conclusion of the course, however, a video demo of this project can be found on my personal website. 
 
 ## Folder Structure
 This project is a multi-component project. The two components are the front-end and the back-end.
